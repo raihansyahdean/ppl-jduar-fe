@@ -4,8 +4,10 @@ stages:
 Deployment:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   stage: deploy
-  script:
+  before_script:
     - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  script:
     - npm install
     - npm run build
     - rm -rf public
