@@ -9,16 +9,16 @@ Build:
   artifacts:
     paths:
       - public # mandatory, other folder won't work
-    script:
-      - npm install
-      - npm run build
-      - rm -rf public
-      - mv build public
-    tags:
-      - docker
-    only:
-      - staging # or dev, the branch you want to publish
-      - master
+  script:
+    - npm install
+    - npm run build
+    - rm -rf public
+    - mv build public
+  tags:
+    - docker
+  only:
+    - staging # or dev, the branch you want to publish
+    - master
 
 Deployment:
   stage: deploy
