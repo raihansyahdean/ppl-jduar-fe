@@ -5,13 +5,14 @@ Deployment:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   stage: deploy
   script:
+    - gem install dpl
     - npm install
     - npm run build
     - rm -rf public
     - mv build public
-    # - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
-    # - export HEROKU_API_KEY=$HEROKU_APIKEY
-    # - heroku run --app $HEROKU_APPNAME migrate
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
+    - export HEROKU_API_KEY=$HEROKU_APIKEY
+    - heroku run --app $HEROKU_APPNAME migrate
   environment:
     name: staging
     url: $HEROKU_APP_HOST
