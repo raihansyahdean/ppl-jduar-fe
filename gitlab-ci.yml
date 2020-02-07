@@ -15,7 +15,7 @@ pages:
     url: $HEROKU_APP_HOST
   artifacts:
     paths:
-    - public # mandatory, other folder won't work
+      - public # mandatory, other folder won't work
   only:
-  - staging # or dev, the branch you want to publish
-  - master
+    - staging # or dev, the branch you want to publish
+    - master
