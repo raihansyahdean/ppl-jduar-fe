@@ -2,6 +2,7 @@ image: node:13.7.0 # can be upgraded, depending on your node version used
   
 stages: 
   - build
+  - test
   - deploy
 
 Build:
@@ -18,6 +19,16 @@ Build:
     - docker
   only:
     - staging # or dev, the branch you want to publish
+    - master
+
+Test:
+  stage: test
+  before_script:
+    - npm install
+  script:
+    - npm test
+  only:
+    - staging
     - master
 
 Deployment:
