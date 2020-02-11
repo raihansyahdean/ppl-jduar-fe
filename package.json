@@ -42,6 +42,9 @@
     "jest": "^25.1.0"
   },
   "jest": {
+    "coverageReporters": [
+      "json-summary"
+    ],
     "transform": {
     "^.+\\.jsx?$": "babel-jest"
     },
@@ -49,10 +52,5 @@
     "^@/(.*)$": "<rootDir>/src/$1"
     },
     "collectCoverageFrom": ["src/*.(js|jsx|ts|tsx|vue)"]
-    },
-    "coverageReporters": [
-      "json-summary", 
-      "text",
-      "lcov"
-    ]
+    }
 }
