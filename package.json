@@ -10,13 +10,14 @@
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.1"
+    "react-scripts": "^3.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:badges": "npm run test  && jest-coverage-badges"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,5 +48,10 @@
     "^@/(.*)$": "<rootDir>/src/$1"
     },
     "collectCoverageFrom": ["src/*.(js|jsx|ts|tsx|vue)"]
-    }
+    },
+    "coverageReporters": [
+      "json-summary", 
+      "text",
+      "lcov"
+    ]
 }
