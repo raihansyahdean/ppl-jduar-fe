@@ -38,19 +38,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "eslint": "^6.8.0",
-    "eslint-plugin-jest-dom": "^2.0.0",
-    "jest": "^25.1.0"
-  },
-  "jest": {
-    "coverageReporters": [
-      "json-summary"
-    ],
-    "transform": {
-    "^.+\\.jsx?$": "babel-jest"
-    },
-    "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "collectCoverageFrom": ["src/*.(js|jsx|ts|tsx|vue)"]
-    }
+    "eslint-plugin-jest-dom": "^2.0.0"
+  }
 }
