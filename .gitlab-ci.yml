@@ -6,12 +6,12 @@ stages:
 Build:
   stage: build
   image: node:13.7.0 # can be upgraded, depending on your node version used
-  artifacts:
-    paths:
-      - public # mandatory, other folder won't work
   script:
     - npm install
     - npm run build
+  artifacts:
+    paths:
+      - dist/
 
 # Test:
 #   stage: test
