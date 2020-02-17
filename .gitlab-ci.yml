@@ -16,6 +16,7 @@ Build:
 
 Test:
   stage: test
+  image: node:13.7.0 # can be upgraded, depending on your node version used
   before_script:
     - npm install
   script:
