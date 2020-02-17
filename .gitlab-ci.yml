@@ -13,11 +13,25 @@ Build:
     paths:
       - dist/
 
-# Test:
-#   stage: test
-#   before_script:
-#     - npm install
-#     - npm run test:badges
+Test:
+  stage: test
+  before_script:
+    - npm install
+  script:
+    - npm run test:unit
+  
+SonarScanner:
+  image: addianto/sonar-scanner-cli:latest
+  stage: test
+  script:
+    - sonar-scanner
+      -Dsonar.host.url=https://pmpl.cs.ui.ac.id/sonarqube
+      -Dsonar.login=$SONARQUBE_TOKEN
+      -Dsonar.branch.name=$CI_COMMIT_REF_NAME
+  only:
+    - master
+    - staging
+    - development
 
 Deployment:
   stage: deploy
