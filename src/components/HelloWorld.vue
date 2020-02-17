@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
-      We'll come very soon ...
+      We'll come very soon...
     </p>
   </div>
 </template>
