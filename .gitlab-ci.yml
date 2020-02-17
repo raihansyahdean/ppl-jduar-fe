@@ -1,6 +1,7 @@
 stages: 
   - build
-  # - test
+  - test
+  - sonar
   - deploy
 
 Build:
@@ -22,7 +23,7 @@ Test:
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
-  stage: test
+  stage: sonar
   script:
     - sonar-scanner
       -Dsonar.host.url=https://pmpl.cs.ui.ac.id/sonarqube
