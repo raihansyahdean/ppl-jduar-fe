@@ -23,7 +23,7 @@ Test:
     - npm run test:unit
   artifacts:
     paths:
-      - coverage/lcov.info
+      - tests/__coverage__
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
