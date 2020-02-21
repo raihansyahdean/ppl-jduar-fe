@@ -20,10 +20,11 @@ Test:
   before_script:
     - npm install
   script:
+    - npm ci --progress=false
     - npm run test:unit
   artifacts:
     paths:
-      - tests/__coverage__/clover.xml
+      - tests/__coverage__/lcov.info
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
