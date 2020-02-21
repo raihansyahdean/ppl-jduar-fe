@@ -21,7 +21,7 @@ Test:
     - npm install
   script:
     - npm ci --progress=false
-    - npm run test:unit
+    - npm run test:unit -- --coverage --coverageReporters=text
   artifacts:
     paths:
       - tests/__coverage__/lcov.info
