@@ -1,5 +1,9 @@
-import { mount } from '@vue/test-utils';
-import ReadyPage from '@/components/ReadyPage.vue';
+import { mount } from '@vue/test-utils'
+import ReadyPage from '@/components/ReadyPage.vue'
+import Vue from 'vue'
+import { BootstrapVue } from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
 
 describe('ReadyPage.vue', () => {
   const wrapper = mount(ReadyPage)

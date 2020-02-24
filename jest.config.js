@@ -14,6 +14,10 @@ module.exports = {
 
   collectCoverage: true,
 
+  coverageDirectory: '<rootDir>/tests/__coverage__',
+
+  coveragePathIgnorePatterns: ['/node_modules/'],
+
   collectCoverageFrom: [
       '<rootDir>/src/*.vue'
     // '<rootDir>/components/**/*.vue',

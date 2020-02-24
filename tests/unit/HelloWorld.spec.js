@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 describe('HelloWorld.vue', () => {
   const wrapper = mount(HelloWorld)
 
-  it('it contains ready page instruction', () => {
-    expect(wrapper.html()).toContain('Hello World')
+  it('it contains code with love', () => {
+    expect(wrapper.html()).toContain('<p>code with ❤ by JDUAR NVIDIA</p>')
   })
 })

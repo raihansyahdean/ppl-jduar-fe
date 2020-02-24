@@ -20,7 +20,11 @@ Test:
   before_script:
     - npm install
   script:
-    - npm run test:unit
+    - npm ci --progress=false
+    - npm run test:unit -- --coverage --coverageReporters=text
+  artifacts:
+    paths:
+      - tests/__coverage__/lcov.info
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
