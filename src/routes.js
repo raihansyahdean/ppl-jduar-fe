@@ -1,5 +1,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 
-export default [
-    { path:"/", components: HelloWorld}
+const routes = [
+    { path:'/', component: HelloWorld},
 ]
+
+export default routes;
