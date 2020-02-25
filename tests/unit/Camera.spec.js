@@ -5,10 +5,21 @@ import { BootstrapVue } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 
-describe('Camera.vue', () => {
-  const wrapper = mount(Camera)
+const wrapper = mount(Camera)
 
-  it('it contains the video', () => {
-    expect(wrapper.html()).toContain('<video></video')
+describe('Camera', () => {
+
+  it('contains the video', () => {
+    expect(wrapper.contains('video')).toBe(true)
+  })
+
+  it('has a mounted hook', () => {
+    expect(typeof Camera.mounted).toBe('function')
+  })
+
+  it('sets the correct default data', () => {
+    expect(typeof Camera.data).toBe('function')
+    const defaultData = Camera.data()
+    expect(defaultData.mediaStream).toBe(null)
   })
 })
