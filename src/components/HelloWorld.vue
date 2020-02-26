@@ -15,9 +15,7 @@ export default {
     msg: String
   },
   data() {
-    return {
-      name: "fes"
-    }
+    return {}
   }
 }
 </script>
