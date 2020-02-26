@@ -24,7 +24,7 @@ Test:
     - npm run test:unit -- --coverage --coverageReporters=text
   artifacts:
     paths:
-      - tests/__coverage__/lcov.info
+      - ./tests/__coverage__/lcov.info
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
