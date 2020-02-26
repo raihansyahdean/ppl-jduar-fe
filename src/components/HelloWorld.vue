@@ -9,10 +9,13 @@
 
 <script>
 export default {
-	beforeCreate: function() {
-        document.body.className = 'white';
-    },
-	name: 'HelloWorld',
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
+  data() {
+    return {}
+  }
 }
 </script>
 

@@ -14,14 +14,14 @@ module.exports = {
 
   collectCoverage: true,
 
-  coverageDirectory: '<rootDir>/tests/__coverage__',
+  coverageDirectory: './tests/__coverage__',
 
   coveragePathIgnorePatterns: ['/node_modules/'],
 
   collectCoverageFrom: [
-      '<rootDir>/src/*.vue'
-    // '<rootDir>/components/**/*.vue',
-    // '<rootDir>/pages/**/*.vue'
+      '<rootDir>/src/*.vue',
+      '<rootDir>/src/components/*.vue'
+    // '<rootDir>/pages/*.vue'
   ],
 
   preset: '@vue/cli-plugin-unit-jest'

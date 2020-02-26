@@ -2,9 +2,13 @@ import { mount } from '@vue/test-utils'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 describe('HelloWorld.vue', () => {
-  const wrapper = mount(HelloWorld)
-
-  it('it contains code with love', () => {
-    expect(wrapper.html()).toContain('<p>code with ❤ by JDUAR NVIDIA</p>')
+  var msg = "Hello World"
+  const wrapper = shallowMount(HelloWorld, {
+    propsData: {
+      msg: msg,
+    }
+  })
+  it('renders props.msg when passed', () => {
+    expect(wrapper.text()).toMatch(msg)
   })
 })
