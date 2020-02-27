@@ -1,9 +1,15 @@
 <template>
-<h1>HOME PAGE</h1>
+<div>
+
+</div>
 </template>
 
 <script>
 export default {
     name: 'HomePage',
+    data() {
+        return {}
+    },
+
 }
 </script>
