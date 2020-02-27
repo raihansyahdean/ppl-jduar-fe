@@ -1,15 +1,14 @@
-import { mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Camera from '@/components/Camera.vue'
 import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 
 Vue.use(BootstrapVue)
 
-const wrapper = mount(Camera)
-
 describe('Camera', () => {
 
   it('contains the video', () => {
+    const wrapper = shallowMount(Camera)
     expect(wrapper.contains('video')).toBe(true)
   })
 
@@ -17,9 +16,19 @@ describe('Camera', () => {
     expect(typeof Camera.mounted).toBe('function')
   })
 
-  it('sets the correct default data', () => {
+  it('has a data hook', () => {
     expect(typeof Camera.data).toBe('function')
+  })
+
+  it('sets the correct default data', () => {
     const defaultData = Camera.data()
     expect(defaultData.mediaStream).toBe(null)
   })
+
+  // it('calls usermedia after mounted', () => {
+  //   const mockMedia = jest.spyOn(navigator.mediaDevices, 'getUserMedia', 'get')
+  //   mockMedia.mockResolvedValueOnce(true)
+  //   shallowMount(Camera)
+  //   expect(mockMedia).toHaveBeenCalled()
+  // })
 })
