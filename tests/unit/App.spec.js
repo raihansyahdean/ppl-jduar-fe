@@ -14,7 +14,6 @@ describe("App", () => {
       router
     })
 
-    router.push("/")
     await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toContain('<p>code with ❤ by JDUAR NVIDIA</p>')
