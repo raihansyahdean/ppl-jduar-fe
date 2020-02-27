@@ -17,25 +17,7 @@ export default {
                 this.$refs.video.srcObject = mediaStream
                 this.$refs.video.play()
             })
-        }
-        else if(navigator.getUserMedia) { // Standard
-            navigator.getUserMedia({ video: true }, function(mediaStream) {
-                this.mediaStream = mediaStream 
-                this.$refs.video.srcObject = mediaStream;
-                this.$refs.video.play()
-            });
-        } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-            navigator.webkitGetUserMedia({ video: true }, function(mediaStream){
-                this.mediaStream = mediaStream 
-                this.$refs.video.srcObject = window.webkitURL.createObjectURL(mediaStream);
-                this.$refs.video.play()
-            });
-        } else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-            navigator.mozGetUserMedia({ video: true }, function(mediaStream){
-                this.mediaStream = mediaStream 
-                this.$refs.video.srcObject = window.URL.createObjectURL(mediaStream);
-                this.$refs.video.play()
-            });
+            .catch(error => console.error('getUserMedia() error:', error))
         }
     },
 }
