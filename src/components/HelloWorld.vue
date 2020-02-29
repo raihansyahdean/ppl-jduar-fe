@@ -1,7 +1,7 @@
 <template>
 	<div class="hello">
 		<h1>Hello World</h1>
-		<img alt="Vue logo" src="./../assets/logo.png">
+		<img alt="Vue logo" src="./../assets/img/logo.png">
 		<p> We'll come very soon... </p>
 		<p>code with ❤ by JDUAR NVIDIA</p>
 	</div>
@@ -9,9 +9,6 @@
 
 <script>
 export default {
-	beforeCreate: function() {
-        document.body.className = 'white';
-    },
 	name: 'HelloWorld',
 }
 </script>

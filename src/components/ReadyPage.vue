@@ -2,7 +2,9 @@
     <div class="text-center">
         <div id ="ready-page">
             <div id="camera">
-                <div class="mx-auto d-block" id="circle"></div>
+                <div class="mx-auto d-block" id="circle">
+                    <camera/>
+                </div>
             </div>
             <div id="instruction">
                 <p class="sentence">Pertama-tama, posisikan kepala Anda di dalam lingkaran. Lalu, gerakkan kepala Anda sesuai dengan instruksi yang diberikan.</p>
@@ -18,12 +20,16 @@
 </template>
 
 <script>
+import Camera from "./Camera.vue";
 export default {
     beforeCreate: function() {
         document.body.className = 'black';
     },
     name: 'ReadyPage',
-}
+    components: {
+        Camera
+    },
+};
 </script>
 
 <style>
@@ -39,6 +45,9 @@ export default {
     width: 230px;
     border-radius: 50%;
     margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
 }
 
 #instruction {
