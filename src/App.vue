@@ -7,7 +7,11 @@
 <script>
 export default {
   name: 'App',
-
+  components: {
+    HelloWorld,
+	ReadyPage,
+	Camera
+  }
 }
 </script>
 
