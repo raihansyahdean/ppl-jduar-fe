@@ -21,10 +21,18 @@ Test:
     - npm install
   script:
     - npm ci --progress=false
-    - npm run test:unit -- --coverage --coverageReporters=text
+    - npm run test:unit -- --coverage
   artifacts:
     paths:
-      - tests/__coverage__/lcov.info
+      - ./tests/__coverage__/lcov.info
+
+Eslint:
+  stage: test
+  image: node:13.7.0 # can be upgraded, depending on your node version used
+  before_script:
+    - npm install
+  script:
+    - npm run lint
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
