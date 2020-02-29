@@ -1,75 +1,56 @@
 <template>
-    <div class="text-center">
-        <div id ="ready-page">
-            <div id="camera">
-                <div class="mx-auto d-block" id="circle">
-                    <camera/>
+    <div class="vertical-center text-center justify-content-center">
+        <div class="d-inline-block">
+            <div>
+                <div>
+                    <img id="instruction-image" alt="instruction-image" src="./../assets/img/face.png">
+                </div>
+                <div id="instruction">
+                    <div><p class="font-16-px font-weight-bold">Set Up deteksi wajah</p></div>
+                    <p class="font-14-px">Posisikan wajah anda di hadapan kamera. Ikuti instruksi yang diberikan.</p>
+                </div>
+                <div>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="start-button">Mulai</b-button>
                 </div>
             </div>
-            <div id="instruction">
-                <p class="sentence">Pertama-tama, posisikan kepala Anda di dalam lingkaran. Lalu, gerakkan kepala Anda sesuai dengan instruksi yang diberikan.</p>
-            </div>
-            <div>
-                <b-button id="start-button">Mulai</b-button>
-            </div>
-            <div class="text-right" id="cancel">
-                <a href="/" class="sentence" id="cancel-link">Batal</a>
+            <div class="float-right position-relative" id="cancel">
+                <a href="/" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Camera from "./Camera.vue";
 export default {
-    beforeCreate: function() {
-        document.body.className = 'black';
-    },
     name: 'ReadyPage',
-    components: {
-        Camera
-    },
 };
 </script>
 
 <style>
-#ready-page {
-    width: 360px; 
-    height: 640px;
-    display: inline-block;
-}
-
-#circle {
-    background-color: #FFFFFF;
-    height: 230px;
-    width: 230px;
-    border-radius: 50%;
-    margin-top: 80px;
-    position: relative;
-    overflow: hidden;
-    background-size: cover;
+/* Instruction Part */
+#instruction-image {
+    width: 240px;
+    height: 240px;
 }
 
 #instruction {
-    margin: 2.5rem 3rem;
+    margin: 0.5rem 3rem 5rem 3rem;
 }
 
-.sentence {
-    color: #FFFFFF;
-}
-
+/* Start Button */
 #start-button {
-    padding: 3px 5rem;
-    background-color: #6785FD;
+    padding: 0.5rem 7rem;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 12px;
 }
 
-#cancel {
-    margin: 3rem 4rem;
+#start-button:focus {
+    box-shadow: none;   
 }
 
-#cancel-link:hover {
-    color: #FFFFFF;
-    text-decoration: none;
+#start-button:active {
+    background-color: #f2f2f2;
 }
 </style>
 
