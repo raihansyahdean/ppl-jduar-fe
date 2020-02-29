@@ -4,6 +4,7 @@
 
 <script>
 export default {
+    name: 'Camera',
     data () {
         return {
             mediaStream: null

@@ -23,6 +23,9 @@
 <script>
 export default {
     name: 'ReadyPage',
+    data () {
+        return {}
+    }
 };
 </script>
 
