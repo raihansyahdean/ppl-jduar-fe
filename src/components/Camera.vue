@@ -10,16 +10,21 @@ export default {
             mediaStream: null
         }
     },
-    mounted () {
-        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-            .then(mediaStream => {
-                this.mediaStream = mediaStream  
-                this.$refs.video.srcObject = mediaStream
-                this.$refs.video.play()
-            })
-            .catch(error => console.error('getUserMedia() error:', error))
+    methods: {
+        showCamera: function() {
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                .then(mediaStream => {
+                    this.mediaStream = mediaStream  
+                    this.$refs.video.srcObject = mediaStream
+                    this.$refs.video.play()
+                })
+                .catch(error => console.error('getUserMedia() error:', error))
+            }
         }
+    },
+    mounted() {
+        this.showCamera()
     },
 }
 </script>
