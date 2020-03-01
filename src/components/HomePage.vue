@@ -1,5 +1,6 @@
 <template>
 <div>
+  <div>
     <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
 
@@ -12,6 +13,27 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+  </div>
+
+  <div>
+    <router-link to="/">
+        <img id='identify-image'
+        style="margin:1vw;"
+        @mouseover="mouseOverIdentify"
+        @mouseleave="mouseLeaveIdentify" 
+        :src="imageIdentify"/>
+    </router-link>
+  </div>
+
+  <div>
+    <router-link to="/">
+        <img id='register-image'
+        @mouseover="mouseOverRegister"
+        @mouseleave="mouseLeaveRegister" 
+        :src="imageRegister"/>
+    </router-link>
+  </div>
+
 </div>
 </template>
 
@@ -19,7 +41,25 @@
 export default {
     name: 'HomePage',
     data() {
-        return {}
+        return {
+            imageIdentify:require("../assets/Identify Default.png"),
+            imageRegister:require("../assets/Register Default.png")
+        }
     },
+    methods: {
+        mouseOverRegister: function(){
+            this.imageRegister = require("../assets/Register Clicked.png")
+        },
+        mouseLeaveRegister: function(){
+            this.imageRegister = require("../assets/Register Default.png")
+        },
+        mouseOverIdentify: function(){
+            this.imageIdentify = require("../assets/Identify Clicked.png")
+        },
+        mouseLeaveIdentify: function(){
+            this.imageIdentify = require("../assets/Identify Default.png")
+        }
+    }
+
 }
 </script>
