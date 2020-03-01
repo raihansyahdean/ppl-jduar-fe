@@ -10,7 +10,7 @@ describe('HomePage.vue', () => {
         localVue,
         stubs: ["b-navbar-nav", "b-nav-item", "b-collapse", "b-navbar-toggle", "b-navbar", "b-navbar-brand"]
     });
-    it("Test image if no hover", async () => {
+    it("Test navbar and init image", async () => {
         await wrapper.vm.$nextTick()
         expect(wrapper.html()).toContain('NavBar')
         expect(wrapper.vm.$data.imageIdentify).toBe(require('@/assets/Identify Default.png'))
@@ -44,6 +44,35 @@ describe('HomePage.vue', () => {
         imgRegister.trigger('mouseleave')
         expect(mouseLeaveRegister).toBeCalled()
         expect(wrapper2.vm.$data.imageRegister).toBe(require('@/assets/Register Default.png'))
+
+    });
+
+    it("Test identify image mouseover and mouseleave function", async () => {
+        const mouseOverIdentify = jest.fn();
+        const mouseLeaveIdentify = jest.fn();
+
+        const wrapper3 = shallowMount(HomePage, {
+            localVue,
+            stubs: ["b-navbar-nav", "b-nav-item", "b-collapse", "b-navbar-toggle", "b-navbar", "b-navbar-brand"],
+            methods: {
+                mouseLeaveIdentify,
+                mouseOverIdentify
+            }, data() {
+                return {
+                    imageIdentify: require("@/assets/Identify Default.png") 
+                }
+            }
+        });
+
+        await wrapper3.vm.$nextTick()
+        var imgIdentify = wrapper3.find('#identify-image')
+        imgIdentify.trigger('mouseover')
+        expect(mouseOverIdentify).toBeCalled()
+        expect(wrapper3.vm.$data.imageIdentify).toBe(require('@/assets/Identify Clicked.png'))
+
+        imgIdentify.trigger('mouseleave')
+        expect(mouseLeaveIdentify).toBeCalled()
+        expect(wrapper3.vm.$data.imageIdentify).toBe(require('@/assets/Identify Default.png'))
 
     });
 })
