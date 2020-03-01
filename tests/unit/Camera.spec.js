@@ -24,11 +24,5 @@ describe('Camera', () => {
     const defaultData = Camera.data()
     expect(defaultData.mediaStream).toBe(null)
   })
-
-  // it('calls usermedia after mounted', () => {
-  //   const mockMedia = jest.spyOn(navigator.mediaDevices, 'getUserMedia', 'get')
-  //   mockMedia.mockResolvedValueOnce(true)
-  //   shallowMount(Camera)
-  //   expect(mockMedia).toHaveBeenCalled()
-  // })
+  
 })
