@@ -8,11 +8,11 @@
                     </div>
                 </div>
                 <div id="instruction">
-                    <div><img id="instruction-image" alt="instruction-image" src="./../assets/img/front-face-instruction.png"></div>
-                    <p class="font-14-px">Hadapkan kepala Anda ke arah depan.</p>
+                    <div><img id="instruction-icon" alt="instruction-image" src="./../assets/img/front-face-instruction.png"></div>
+                    <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button">Ambil Foto</b-button>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" v-on:click="changeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
             <div class="float-right position-relative" id="cancel">
@@ -29,6 +29,24 @@ export default {
     components: {
         Camera
     },
+    data: function () {
+        return {
+            instructionsList: ['Hadapkan kepala Anda ke arah kanan.', 
+            'Hadapkan kepala Anda ke arah kiri.', 
+            'Hadapkan kepala Anda ke arah atas.', 
+            'Hadapkan kepala Anda ke arah bawah.'],
+            instructionIdx: 0
+        }
+    },
+    methods: {
+        changeInstruction: function(){
+            if (this.instructionIdx == 4) {
+                window.location = '/#/ready';
+            }
+            document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
+            this.instructionIdx++;
+        },
+    }
 };
 </script>
 
@@ -47,7 +65,7 @@ export default {
 }
 
 /* Instruction Part */
-#instruction-image {
+#instruction-icon {
     width: 60px;
     height: 60px;
     margin: 2rem 0;

@@ -5,7 +5,7 @@
                 <div>
                     <img id="instruction-image" alt="instruction-image" src="./../assets/img/face.png">
                 </div>
-                <div id="instruction">
+                <div id="instruction-div">
                     <div><p class="font-16-px font-weight-bold">Set Up deteksi wajah</p></div>
                     <p class="font-14-px">Posisikan wajah anda di hadapan kamera. Ikuti instruksi yang diberikan.</p>
                 </div>
@@ -31,13 +31,13 @@ export default {
 
 <style>
 /* Instruction Part */
+#instruction-div {
+    margin: 0.5rem 3rem 5rem 3rem;
+}
+
 #instruction-image {
     width: 240px;
     height: 240px;
-}
-
-#instruction {
-    margin: 0.5rem 3rem 5rem 3rem;
 }
 
 /* Start Button */
