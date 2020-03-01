@@ -21,6 +21,7 @@
         style="margin:1vw;"
         @mouseover="mouseOverIdentify"
         @mouseleave="mouseLeaveIdentify" 
+        @mousedown="mouseClickIdentify"
         :src="imageIdentify"/>
     </router-link>
   </div>
@@ -30,6 +31,7 @@
         <img id='register-image'
         @mouseover="mouseOverRegister"
         @mouseleave="mouseLeaveRegister" 
+        @mousedown="mouseClickRegister"
         :src="imageRegister"/>
     </router-link>
   </div>
@@ -48,16 +50,23 @@ export default {
     },
     methods: {
         mouseOverRegister: function(){
-            this.imageRegister = require("../assets/Register Clicked.png")
+            this.imageRegister = require("../assets/Register Hover.png")
         },
         mouseLeaveRegister: function(){
             this.imageRegister = require("../assets/Register Default.png")
         },
+        mouseClickRegister: function(){
+            this.imageRegister = require("../assets/Register Clicked.png")
+        },
+
         mouseOverIdentify: function(){
-            this.imageIdentify = require("../assets/Identify Clicked.png")
+            this.imageIdentify = require("../assets/Identify Hover.png")
         },
         mouseLeaveIdentify: function(){
             this.imageIdentify = require("../assets/Identify Default.png")
+        },
+        mouseClickIdentify: function(){
+            this.imageIdentify = require("../assets/Identify Clicked.png")
         }
     }
 
