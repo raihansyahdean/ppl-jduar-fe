@@ -11,11 +11,12 @@ describe("App", () => {
     const router = new VueRouter({ routes })
     const wrapper = mount(App, { 
       localVue,
+      stubs: ["b-navbar-nav", "b-nav-item", "b-collapse", "b-navbar-toggle", "b-navbar", "b-navbar-brand"],
       router
     })
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.html()).toContain('<p>code with ❤ by JDUAR NVIDIA</p>')
+    expect(wrapper.html()).toContain('NavBar')
   });
 })
