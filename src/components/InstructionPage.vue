@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div id="instruction">
-                    <div><img id="instruction-image" alt="instruction-image" src="./../assets/img/front-face-instruction.png"></div>
+                    <div><img id="instruction-icon" alt="instruction-image" src="./../assets/img/front-face-instruction.png"></div>
                     <p class="font-14-px">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
@@ -47,7 +47,7 @@ export default {
 }
 
 /* Instruction Part */
-#instruction-image {
+#instruction-icon {
     width: 60px;
     height: 60px;
     margin: 2rem 0;
