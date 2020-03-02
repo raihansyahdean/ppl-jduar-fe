@@ -1,0 +1,38 @@
+/* Hyperlink Styles */
+a {
+	color: #000000!important;
+}
+
+a:hover {
+	color: #000000!important;	
+}
+
+/* Font Styles */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+#app {
+	font-family: 'Open Sans';
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.font-14-px {
+    font-size: 14px;
+}
+
+.font-16-px {
+    font-size: 16px;
+}
+
+/* Alignment */
+.vertical-center {
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+/* Cancel Button */
+#cancel {
+    margin: 3rem 13% 2% 0;
+}

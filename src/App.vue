@@ -1,19 +1,19 @@
 <template>
-  <div id="app">
+	<div id="app">
 		<router-view></router-view>
-  </div>
+	</div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  data () {
+    return {}
+  }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-}
+@import './assets/css/general.css';
 </style>

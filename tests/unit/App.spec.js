@@ -3,20 +3,12 @@ import App from "@/App.vue"
 import VueRouter from "vue-router"
 import routes from "@/routes.js"
 
-const localVue = createLocalVue()
-localVue.use(VueRouter)
+describe('App.vue', () => {
+  const wrapper = mount(App, {
+    stubs: ['router-view']
+  })
 
-describe("App", () => {
-  it("renders a child component via routing", async () => {
-    const router = new VueRouter({ routes })
-    const wrapper = mount(App, { 
-      localVue,
-      stubs: ["b-navbar-nav", "b-nav-item", "b-collapse", "b-navbar-toggle", "b-navbar", "b-navbar-brand"],
-      router
-    })
-
-    await wrapper.vm.$nextTick()
-
-    expect(wrapper.html()).toContain('NavBar')
-  });
+  it('it contains tag router-view', () => {
+    expect(wrapper.html()).toContain('<router-view-stub></router-view-stub>')
+  })
 })
