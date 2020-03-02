@@ -17,7 +17,7 @@
 
   <div style="margin-top:3vw">
   <router-link to="/ready">
-      <img id='register-image'
+      <img id='register-image' alt="register-button"
       style="margin:1vw;"
       @mouseover="mouseOverRegister"
       @mouseleave="mouseLeaveRegister" 
@@ -27,7 +27,7 @@
 
   <div>
     <router-link to="/">
-        <img id='identify-image'
+        <img id='identify-image' alt="identify-button"
         @mouseover="mouseOverIdentify"
         @mouseleave="mouseLeaveIdentify" 
         @mousedown="mouseClickIdentify"
