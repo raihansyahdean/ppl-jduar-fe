@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="text-align: center;">
   <div>
     <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
@@ -15,10 +15,19 @@
     </b-navbar>
   </div>
 
+  <div style="margin-top:3vw">
+  <router-link to="/ready">
+      <img id='register-image'
+      style="margin:1vw;"
+      @mouseover="mouseOverRegister"
+      @mouseleave="mouseLeaveRegister" 
+      @mousedown="mouseClickRegister"
+      :src="imageRegister"/>
+  </router-link>
+
   <div>
     <router-link to="/">
         <img id='identify-image'
-        style="margin:1vw;"
         @mouseover="mouseOverIdentify"
         @mouseleave="mouseLeaveIdentify" 
         @mousedown="mouseClickIdentify"
@@ -26,14 +35,6 @@
     </router-link>
   </div>
 
-  <div>
-    <router-link to="/">
-        <img id='register-image'
-        @mouseover="mouseOverRegister"
-        @mouseleave="mouseLeaveRegister" 
-        @mousedown="mouseClickRegister"
-        :src="imageRegister"/>
-    </router-link>
   </div>
 
 </div>
