@@ -4,7 +4,7 @@
             <div>
                 <div id="camera">
                     <div class="mx-auto d-block" id="circle">
-                        <camera/>
+                        <camera ref="camera"/>
                     </div>
                 </div>
                 <div id="instruction">
@@ -12,7 +12,7 @@
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" v-on:click="changeInstruction">Ambil Foto</b-button>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" v-on:click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
             <div class="float-right position-relative" id="cancel">
@@ -35,10 +35,16 @@ export default {
             'Hadapkan kepala Anda ke arah kiri.', 
             'Hadapkan kepala Anda ke arah atas.', 
             'Hadapkan kepala Anda ke arah bawah.'],
-            instructionIdx: 0
+            instructionIdx: 0,
+            captured: [],
         }
     },
     methods: {
+        savePhotoAndChangeInstruction: function(){
+            const capturedPhoto = this.$refs.camera.capturePhoto()
+            this.captured.push(capturedPhoto)
+            this.changeInstruction()
+        },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
                 window.location = '/#/ready';
