@@ -12,7 +12,7 @@
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" v-on:click="changeInstruction">Ambil Foto</b-button>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="changeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
             <div class="float-right position-relative" id="cancel">
