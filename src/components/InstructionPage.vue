@@ -8,11 +8,11 @@
                     </div>
                 </div>
                 <div id="instruction">
-                    <div><img id="instruction-icon" alt="instruction-image" src="./../assets/img/front-face-instruction.png"></div>
+                    <div><img id="instruction-icon" alt="instruction-icon" :src="instructionIcon"></div>
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" v-on:click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
             <div class="float-right position-relative" id="cancel">
@@ -35,6 +35,8 @@ export default {
             'Hadapkan kepala Anda ke arah kiri.', 
             'Hadapkan kepala Anda ke arah atas.', 
             'Hadapkan kepala Anda ke arah bawah.'],
+            instructionIconsList: ['right', 'left', 'up', 'down'],
+            instructionIcon: require("../assets/img/front-face-instruction.png"),
             instructionIdx: 0,
             captured: [],
         }
@@ -50,6 +52,7 @@ export default {
                 window.location = '/#/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
+                this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png")
                 this.instructionIdx++;
             }
         },

@@ -4,6 +4,7 @@ import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import {render, fireEvent} from '@testing-library/vue'
 import routes from "@/routes.js"
+import 'jest-canvas-mock';
 
 Vue.use(BootstrapVue)
 
@@ -20,7 +21,7 @@ describe('InstructionPage.vue', () => {
 		getByText('Hadapkan kepala Anda ke arah depan.')
 	
 		const button = getByText('Ambil Foto')
-	
+
 		await fireEvent.click(button)
 		getByText('Hadapkan kepala Anda ke arah kanan.')
 
