@@ -10,7 +10,7 @@
                     <p class="font-14-px">Posisikan wajah anda di hadapan kamera. Ikuti instruksi yang diberikan.</p>
                 </div>
                 <div>
-                    <b-button href="#/start" class="border-0 font-16-px font-weight-bold" id="start-button">Mulai</b-button>
+                    <b-button href="/start" class="border-0 font-16-px font-weight-bold" id="start-button">Mulai</b-button>
                 </div>
             </div>
             <div class="px-5" id="cancel">

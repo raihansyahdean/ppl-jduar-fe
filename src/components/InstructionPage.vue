@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="px-5" id="cancel">
-                <a href="/#/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
+                <a href="/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@ export default {
         },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
-                window.location = '/#/ready';
+                window.location = '/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
