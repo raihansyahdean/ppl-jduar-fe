@@ -14,9 +14,9 @@ Vue.config.productionTip = false
 // Install Routing
 Vue.use(VueRouter);
 // Install BootstrapVue
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+Vue.use(IconsPlugin);
 
 const router = new VueRouter({routes});
 

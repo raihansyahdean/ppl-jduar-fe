@@ -6,47 +6,47 @@ import {render, fireEvent} from '@testing-library/vue'
 import routes from "@/routes.js"
 import 'jest-canvas-mock';
 
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
 
 describe('InstructionPage.vue', () => {
-	const wrapper = mount(InstructionPage)
+	const wrapper = mount(InstructionPage);
 	
 	it('it contains camera video tag', () => {
-		expect(wrapper.html()).toContain('<video></video>')
-	})
+		expect(wrapper.html()).toContain('<video></video>');
+	});
 	
 	it('it can change instruction if Ambil Foto button is clicked', async () => {
-		const {getByText} = render(InstructionPage)
+		const {getByText} = render(InstructionPage);
 
-		getByText('Hadapkan kepala Anda ke arah depan.')
+		getByText('Hadapkan kepala Anda ke arah depan.');
 	
-		const button = getByText('Ambil Foto')
+		const button = getByText('Ambil Foto');
 
-		await fireEvent.click(button)
-		getByText('Hadapkan kepala Anda ke arah kanan.')
+		await fireEvent.click(button);
+		getByText('Hadapkan kepala Anda ke arah kanan.');
 
-		await fireEvent.click(button)
-		getByText('Hadapkan kepala Anda ke arah kiri.')
+		await fireEvent.click(button);
+		getByText('Hadapkan kepala Anda ke arah kiri.');
 
-		await fireEvent.click(button)
-		getByText('Hadapkan kepala Anda ke arah atas.')
+		await fireEvent.click(button);
+		getByText('Hadapkan kepala Anda ke arah atas.');
 
-		await fireEvent.click(button)
-		getByText('Hadapkan kepala Anda ke arah bawah.')
-	})
+		await fireEvent.click(button);
+		getByText('Hadapkan kepala Anda ke arah bawah.');
+	});
 
 	it('it redirect the page to ready page if instructions if finished', async () => {
 		const {getByText} = render(InstructionPage, {routes}, (vue, store, router) => {
-			router.push('/ready')
+			router.push('/ready');
 		})
 
-		const button = getByText('Ambil Foto')
-		await fireEvent.click(button)
-		await fireEvent.click(button)
-		await fireEvent.click(button)
-		await fireEvent.click(button)
-		await fireEvent.click(button)
+		const button = getByText('Ambil Foto');
+		await fireEvent.click(button);
+		await fireEvent.click(button);
+		await fireEvent.click(button);
+		await fireEvent.click(button);
+		await fireEvent.click(button);
 
-		expect(window.location.href).toContain("/ready")
-	})
+		expect(window.location.href).toContain("/ready");
+	});
 })

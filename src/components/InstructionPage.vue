@@ -43,16 +43,16 @@ export default {
     },
     methods: {
         savePhotoAndChangeInstruction: function(){
-            const capturedPhoto = this.$refs.camera.capturePhoto()
-            this.captured.push(capturedPhoto)
-            this.changeInstruction()
+            const capturedPhoto = this.$refs.camera.capturePhoto();
+            this.captured.push(capturedPhoto);
+            this.changeInstruction();
         },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
                 window.location = '/#/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
-                this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png")
+                this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
                 this.instructionIdx++;
             }
         },
