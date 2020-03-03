@@ -10,7 +10,7 @@
                 <div id="instruction">
                     <div><img id="instruction-icon" alt="instruction-icon" :src="instructionIcon"></div>
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
-                </div>
+                 </div>
                 <div>
                     <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
@@ -81,8 +81,8 @@ export default {
     margin: 2rem 0;
 }
 
-#instruction {
-    margin: 0rem 3rem 2rem 3rem;
+#instruction-sentence {
+    margin: 0 0 2rem 0;
 }
 
 /* Shoot Button */
