@@ -48,9 +48,10 @@ export default {
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
                 window.location = '/#/ready';
+            } else {
+                document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
+                this.instructionIdx++;
             }
-            document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
-            this.instructionIdx++;
         },
     }
 };
