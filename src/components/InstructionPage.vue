@@ -15,8 +15,8 @@
                     <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
-            <div class="float-right position-relative" id="cancel">
-                <a href="/" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
+            <div class="px-5" id="cancel">
+                <a href="/#/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
         </div>
     </div>
@@ -68,7 +68,6 @@ export default {
     height: 240px;
     width: 240px;
     border-radius: 50%;
-    margin-top: 80px;
     position: relative;
     overflow: hidden;
     background-size: cover;
