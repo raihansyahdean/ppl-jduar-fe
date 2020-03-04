@@ -21,6 +21,19 @@ export default {
                 })
                 .catch(error => console.error('getUserMedia() error:', error))
             }
+        },
+        capturePhoto: function() {
+            const video = this.$refs.video
+            if (!this.ctx) {
+                this.canvas = document.createElement('canvas');
+                this.canvas.height = video.clientHeight;
+                this.canvas.width = video.clientWidth;
+                this.ctx = this.canvas.getContext('2d');
+            }
+            const { ctx, canvas } = this;
+            ctx.drawImage(video, 0, 0, this.canvas.width, this.canvas.height);
+            const captured = canvas.toDataURL("image/jpeg");
+            return captured
         }
     },
     mounted() {
@@ -33,8 +46,8 @@ export default {
 video {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    height: 230px;
-    width: 230px;
+    height: 240px;
+    width: 240px;
     object-fit: cover;
 }
 </style>
