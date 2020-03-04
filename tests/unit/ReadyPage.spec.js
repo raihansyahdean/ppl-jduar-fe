@@ -15,11 +15,11 @@ describe('ReadyPage.vue', () => {
 		router
 	});
 
-	it('it contains ready page instruction', () => {
+	it('contains ready page instruction', () => {
 		expect(wrapper.html()).toContain('Posisikan wajah anda di hadapan kamera');
 	});
 
-	it('it redirect the page to instruction page if Mulai Button is clicked', async () => {
+	it('redirect the page to instruction page if Mulai Button is clicked', async () => {
 		const button = wrapper.find('#start-button');
 		button.trigger('click');
 		router.push("/start");

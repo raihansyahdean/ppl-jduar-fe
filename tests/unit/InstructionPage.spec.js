@@ -11,11 +11,11 @@ Vue.use(BootstrapVue);
 describe('InstructionPage.vue', () => {
 	const wrapper = mount(InstructionPage);
 	
-	it('it contains camera video tag', () => {
+	it('contains camera video tag', () => {
 		expect(wrapper.html()).toContain('<video></video>');
 	});
 	
-	it('it can change instruction if Ambil Foto button is clicked', async () => {
+	it('can change instruction if Ambil Foto button is clicked', async () => {
 		const {getByText} = render(InstructionPage);
 
 		getByText('Hadapkan kepala Anda ke arah depan.');
@@ -35,7 +35,7 @@ describe('InstructionPage.vue', () => {
 		getByText('Hadapkan kepala Anda ke arah bawah.');
 	});
 
-	it('it redirect the page to ready page if instructions if finished', async () => {
+	it('redirect the page to ready page if instructions if finished', async () => {
 		const {getByText} = render(InstructionPage, {routes}, (vue, store, router) => {
 			router.push('/ready');
 		})

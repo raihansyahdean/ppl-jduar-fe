@@ -6,7 +6,7 @@ describe('App.vue', () => {
 		stubs: ['router-view']
 	});
 
-	it('it contains tag router-view', () => {
+	it('contains tag router-view', () => {
 		expect(wrapper.html()).toContain('<router-view-stub></router-view-stub>');
 	});
 })

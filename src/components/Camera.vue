@@ -1,5 +1,5 @@
 <template>
-    <video ref="video"></video>
+    <video ref="video"> </video>
 </template>
 
 <script>
@@ -7,23 +7,25 @@ export default {
     name: 'Camera',
     data () {
         return {
-            mediaStream: null
+            mediaStream: null,
         }
     },
     methods: {
         showCamera: function() {
+            /* These lines are ignored due to its functionality is tested directly by user*/
+            /* istanbul ignore next */
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(mediaStream => {
-                    this.mediaStream = mediaStream  
-                    this.$refs.video.srcObject = mediaStream
-                    this.$refs.video.play()
+                    this.mediaStream = mediaStream;
+                    this.$refs.video.srcObject = mediaStream;
+                    this.$refs.video.play();
                 })
-                .catch(error => console.error('getUserMedia() error:', error))
+                .catch(error => console.error('getUserMedia() error:', error));
             }
         },
         capturePhoto: function() {
-            const video = this.$refs.video
+            const video = this.$refs.video;
             if (!this.ctx) {
                 this.canvas = document.createElement('canvas');
                 this.canvas.height = video.clientHeight;
@@ -37,7 +39,7 @@ export default {
         }
     },
     mounted() {
-        this.showCamera()
+        this.showCamera();
     },
 }
 </script>
