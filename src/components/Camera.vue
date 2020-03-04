@@ -8,6 +8,7 @@ export default {
     data () {
         return {
             mediaStream: null,
+            canvas: null,
         }
     },
     methods: {
@@ -27,15 +28,15 @@ export default {
         capturePhoto: function() {
             const video = this.$refs.video;
             if (!this.ctx) {
-                const canvasEl = document.createElement('canvas');
-                canvasEl.height = video.clientHeight;
-                canvasEl.width = video.clientWidth;
-                this.canvasEl = canvasEl;
-                this.ctx = canvasEl.getContext('2d');
+                let canvas = document.createElement('canvas');
+                canvas.height = video.clientHeight;
+                canvas.width = video.clientWidth;
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
             }
-            const { ctx, canvasEl } = this;
-            ctx.drawImage(video, 0, 0, canvasEl.width, canvasEl.height);
-            const captured = canvasEl.toDataURL("image/jpeg");
+            const { ctx, canvas } = this;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const captured = canvas.toDataURL("image/jpeg");
             return captured
         }
     },
