@@ -1,5 +1,5 @@
 <template>
-    <video ref="video"></video>
+    <video ref="video"> </video>
 </template>
 
 <script>
@@ -7,38 +7,40 @@ export default {
     name: 'Camera',
     data () {
         return {
-            mediaStream: null
+            mediaStream: null,
         }
     },
     methods: {
         showCamera: function() {
+            /* These lines are ignored due to its functionality is tested directly by user*/
+            /* istanbul ignore next */
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(mediaStream => {
-                    this.mediaStream = mediaStream  
-                    this.$refs.video.srcObject = mediaStream
-                    this.$refs.video.play()
+                    this.mediaStream = mediaStream;
+                    this.$refs.video.srcObject = mediaStream;
+                    this.$refs.video.play();
                 })
-                .catch(error => console.error('getUserMedia() error:', error))
+                .catch(error => console.error('getUserMedia() error:', error));
             }
         },
         capturePhoto: function() {
-            const video = this.$refs.video
+            const video = this.$refs.video;
             if (!this.ctx) {
-                const canvas = document.createElement('canvas');
-                canvas.height = video.clientHeight;
-                canvas.width = video.clientWidth;
-                this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
+                const canvasEl = document.createElement('canvas');
+                canvasEl.height = video.clientHeight;
+                canvasEl.width = video.clientWidth;
+                this.canvasEl = canvasEl;
+                this.ctx = canvasEl.getContext('2d');
             }
-            const { ctx, canvas } = this;
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            const captured = canvas.toDataURL("image/jpeg");
+            const { ctx, canvasEl } = this;
+            ctx.drawImage(video, 0, 0, canvasEl.width, canvasEl.height);
+            const captured = canvasEl.toDataURL("image/jpeg");
             return captured
         }
     },
     mounted() {
-        this.showCamera()
+        this.showCamera();
     },
 }
 </script>
