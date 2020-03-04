@@ -10,7 +10,7 @@
                 <div id="instruction">
                     <div><img id="instruction-icon" alt="instruction-icon" :src="instructionIcon"></div>
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
-                 </div>
+                </div>
                 <div>
                     <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
@@ -23,7 +23,9 @@
 </template>
 
 <script>
-import Camera from "./Camera.vue";
+import Camera from "./Camera.vue"
+import axios from "axios"
+
 export default {
     name: 'InstructionPage',
     components: {
@@ -38,17 +40,21 @@ export default {
             instructionIconsList: ['right', 'left', 'up', 'down'],
             instructionIcon: require("../assets/img/front-face-instruction.png"),
             instructionIdx: 0,
-            captured: [],
+            captured: {
+                images: [],
+            },
         }
     },
     methods: {
         savePhotoAndChangeInstruction: function(){
             const capturedPhoto = this.$refs.camera.capturePhoto();
-            this.captured.push(capturedPhoto);
+            this.captured.images.push(capturedPhoto);
+            console.log(this.captured);
             this.changeInstruction();
         },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
+                this.sendPayload();
                 window.location = '/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
@@ -56,6 +62,12 @@ export default {
                 this.instructionIdx++;
             }
         },
+        sendPayload: async function(){
+            const payload = JSON.stringify(this.captured);
+            await axios.post("http://ppl-smartcrm.herokuapp.com/crossroads/regist/", payload)
+            .then(response => { console.log(response) })
+            .catch(error => { console.log(error.response) });
+        }
     }
 };
 </script>
