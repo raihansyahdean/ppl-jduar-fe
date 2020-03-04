@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-
 import VueRouter from 'vue-router'
 import routes from './routes'
 
@@ -14,11 +13,14 @@ Vue.config.productionTip = false
 // Install Routing
 Vue.use(VueRouter);
 // Install BootstrapVue
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
+Vue.use(IconsPlugin);
 
-const router = new VueRouter({routes});
+const router = new VueRouter({
+  mode: "history",
+  routes
+});
 
 new Vue({
   router,
