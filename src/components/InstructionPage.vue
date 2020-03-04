@@ -10,7 +10,7 @@
                 <div id="instruction">
                     <div><img id="instruction-icon" alt="instruction-icon" :src="instructionIcon"></div>
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
-                 </div>
+                </div>
                 <div>
                     <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
@@ -29,7 +29,7 @@ import axios from "axios"
 export default {
     name: 'InstructionPage',
     components: {
-        Camera 
+        Camera
     },
     data: function () {
         return {
@@ -49,13 +49,13 @@ export default {
         savePhotoAndChangeInstruction: function(){
             const capturedPhoto = this.$refs.camera.capturePhoto();
             this.captured.images.push(capturedPhoto);
+            console.log(this.captured);
             this.changeInstruction();
         },
         changeInstruction: function(){
-            console.log(this.instructionIdx)
             if (this.instructionIdx == 4) {
                 this.sendPayload();
-                window.location = '/ready';
+                // window.location = '/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
@@ -64,7 +64,11 @@ export default {
         },
         sendPayload: async function(){
             const payload = JSON.stringify(this.captured);
-            await axios.get("http://localhost:8000/crossroads/regist/", payload)
+            axios({
+                method: 'post',
+                url: "http://127.0.0.1:8000/crossroads/regist/",
+                data: payload
+            })
             .then(response => { console.log(response) })
             .catch(error => { console.log(error.response) });
         }
