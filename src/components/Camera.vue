@@ -1,5 +1,5 @@
 <template>
-    <video ref="video"></video>
+    <video ref="video"> </video>
 </template>
 
 <script>
@@ -7,38 +7,39 @@ export default {
     name: 'Camera',
     data () {
         return {
-            mediaStream: null
+            mediaStream: null,
         }
     },
     methods: {
         showCamera: function() {
+            /* These lines are ignored due to its functionality is tested directly by user*/
+            /* istanbul ignore next */
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(mediaStream => {
-                    this.mediaStream = mediaStream  
-                    this.$refs.video.srcObject = mediaStream
-                    this.$refs.video.play()
+                    this.mediaStream = mediaStream;
+                    this.$refs.video.srcObject = mediaStream;
+                    this.$refs.video.play();
                 })
-                .catch(error => console.error('getUserMedia() error:', error))
+                .catch(error => console.error('getUserMedia() error:', error));
             }
         },
         capturePhoto: function() {
-            const video = this.$refs.video
+            const video = this.$refs.video;
             if (!this.ctx) {
-                const canvas = document.createElement('canvas');
-                canvas.height = video.clientHeight;
-                canvas.width = video.clientWidth;
-                this.canvas = canvas;
-                this.ctx = canvas.getContext('2d');
+                this.canvas = document.createElement('canvas');
+                this.canvas.height = video.clientHeight;
+                this.canvas.width = video.clientWidth;
+                this.ctx = this.canvas.getContext('2d');
             }
             const { ctx, canvas } = this;
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(video, 0, 0, this.canvas.width, this.canvas.height);
             const captured = canvas.toDataURL("image/jpeg");
             return captured
         }
     },
     mounted() {
-        this.showCamera()
+        this.showCamera();
     },
 }
 </script>
