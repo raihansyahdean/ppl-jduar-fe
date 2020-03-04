@@ -23,7 +23,9 @@
 </template>
 
 <script>
-import Camera from "./Camera.vue";
+import Camera from "./Camera.vue"
+import axios from "axios"
+
 export default {
     name: 'InstructionPage',
     components: {
@@ -38,24 +40,34 @@ export default {
             instructionIconsList: ['right', 'left', 'up', 'down'],
             instructionIcon: require("../assets/img/front-face-instruction.png"),
             instructionIdx: 0,
-            captured: [],
+            captured: {
+                images: [],
+            },
         }
     },
     methods: {
         savePhotoAndChangeInstruction: function(){
-            const capturedPhoto = this.$refs.camera.capturePhoto()
-            this.captured.push(capturedPhoto)
-            this.changeInstruction()
+            const capturedPhoto = this.$refs.camera.capturePhoto();
+            this.captured.images.push(capturedPhoto);
+            this.changeInstruction();
         },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
+                console.log(this.captured);
+                this.sendPayload();
                 window.location = '/#/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
-                this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png")
+                this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
                 this.instructionIdx++;
             }
         },
+        sendPayload: async function(){
+            const payload = JSON.stringify(this.captured);
+            await axios.post("http://ppl-smartcrm.herokuapp.com/crossroads/regist/", payload)
+            .then(response => { console.log(response) })
+            .catch(error => { console.log(error.response) });
+        }
     }
 };
 </script>
