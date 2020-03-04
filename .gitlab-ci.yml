@@ -9,7 +9,7 @@ Build:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   script:
     - npm install
-    - npm run build
+    - npm run build --mode staging
   artifacts:
     paths:
       - dist/
@@ -59,3 +59,21 @@ Deployment:
     url: $HEROKU_APP_HOST
   only:
     - staging
+
+DeployProduction:
+  stage: deploy
+  image: ruby:latest
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APPNAME_PROD --api-key=$HEROKU_APIKEY
+    - export HEROKU_API_KEY=$HEROKU_APIKEY
+    # - heroku run --app $HEROKU_APPNAME migrate
+  environment:
+    name: production
+    url: $HEROKU_APP_HOST_PROD
+  only:
+    - master
+  when: manual
