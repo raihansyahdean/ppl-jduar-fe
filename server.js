@@ -5,7 +5,7 @@ var serveStatic = require('serve-static')
 
 // var path = require('path');
 var enforce = require('express-sslify');
-var http = require('http');
+// var http = require('http');
 
 var app = express();
 // Serve static assets from the build files (images, etc)
@@ -26,12 +26,12 @@ app.get('*',function(req,res,next){
     next() /* Continue to other routes if we're not redirecting */
 })
 
-// var port = process.env.PORT || 5000
+var port = process.env.PORT || 5000
 
-// app.listen(port, () => {
-//   console.log('Server started at http://localhost:5000')
-// })
+app.listen(port, () => {
+  console.log('Server started at http://localhost:5000')
+})
 
-http.createServer(app).listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
-});
+// http.createServer(app).listen(app.get('port'), function() {
+//   console.log('Express server listening on port ' + app.get('port'));
+// });
