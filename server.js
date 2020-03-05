@@ -19,6 +19,13 @@ app.use(history({
     verbose: true
 }))
 
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect(process.env.VUE_APP_URL_FE+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
+
 // var port = process.env.PORT || 5000
 
 // app.listen(port, () => {
