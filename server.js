@@ -10,6 +10,7 @@ var enforce = require('express-sslify');
 var app = express();
 // Serve static assets from the build files (images, etc)
 app.use(serveStatic(path.join(__dirname, '/dist')))
+app.use(serveStatic(__dirname + "/dist"));
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // Use a fallback for non-root routes (required for Vue router)
