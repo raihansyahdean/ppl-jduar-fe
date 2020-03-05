@@ -22,7 +22,7 @@ BuildStaging:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   script:
     - npm install
-    - npm run build --mode staging
+    - npm run build -- --mode staging
   artifacts:
     paths:
       - dist/
@@ -34,7 +34,7 @@ BuildMaster:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   script:
     - npm install
-    - npm run build --mode production
+    - npm run build -- --mode production
   artifacts:
     paths:
       - dist/
