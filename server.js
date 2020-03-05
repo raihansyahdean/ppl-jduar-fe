@@ -5,6 +5,7 @@ var serveStatic = require('serve-static')
 
 // var path = require('path');
 var enforce = require('express-sslify');
+var http = require('http');
 
 var app = express();
 // Serve static assets from the build files (images, etc)
@@ -18,7 +19,7 @@ app.use(history({
     verbose: true
 }))
 
-var port = process.env.PORT || 5000
+// var port = process.env.PORT || 5000
 
 // app.listen(port, () => {
 //   console.log('Server started at http://localhost:5000')
