@@ -9,10 +9,37 @@ Build:
   image: node:13.7.0 # can be upgraded, depending on your node version used
   script:
     - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  except:
+    - staging
+    - master
+
+BuildStaging:
+  stage: build
+  image: node:13.7.0 # can be upgraded, depending on your node version used
+  script:
+    - npm install
     - npm run build --mode staging
   artifacts:
     paths:
       - dist/
+  only:
+    - staging
+
+BuildMaster:
+  stage: build
+  image: node:13.7.0 # can be upgraded, depending on your node version used
+  script:
+    - npm install
+    - npm run build --mode production
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - master
 
 Test:
   stage: test
