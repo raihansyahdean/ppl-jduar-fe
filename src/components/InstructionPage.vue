@@ -66,7 +66,7 @@ export default {
             const payload = JSON.stringify(this.captured);
             axios({
                 method: 'post',
-                url: "http://127.0.0.1:8000/crossroads/regist/",
+                url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
                 data: payload
             })
             .then(response => { console.log(response) })
