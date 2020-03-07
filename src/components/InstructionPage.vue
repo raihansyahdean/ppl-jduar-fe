@@ -55,7 +55,7 @@ export default {
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
                 this.sendPayload();
-                window.location = '/ready';
+                // window.location = '/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
@@ -66,7 +66,7 @@ export default {
             const payload = JSON.stringify(this.captured);
             axios({
                 method: 'post',
-                url: process.env.VUE_APP_URL_BE,
+                url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
                 data: payload
             })
             .then(response => { console.log(response) })
