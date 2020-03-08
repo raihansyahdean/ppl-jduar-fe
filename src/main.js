@@ -9,7 +9,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
-export const BASE_ROUTE = process.env.VUE_APP_BASE_ROUTE || '/'
 
 // Install Routing
 Vue.use(VueRouter);
@@ -20,7 +19,6 @@ Vue.use(IconsPlugin);
 
 const router = new VueRouter({
   mode: "history",
-  base: BASE_ROUTE,
   routes
 });
 
