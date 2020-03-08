@@ -13,6 +13,16 @@ Build:
   artifacts:
     paths:
       - dist/
+  cache:
+    key: $CI_COMMIT_REF_NAME
+    paths:
+      - node_modules/
+  only:
+    changes:
+      - .gitlab-ci.yml
+      - /**/*
+    refs:
+      - branches
   except:
     - staging
     - master
@@ -26,6 +36,10 @@ BuildStaging:
   artifacts:
     paths:
       - dist/
+  cache:
+    key: staging
+    paths:
+      - node_modules/
   only:
     - staging
 
@@ -38,28 +52,40 @@ BuildMaster:
   artifacts:
     paths:
       - dist/
+    expire_in: 1 hour
+  cache:
+    key: master
+    paths:
+      - node_modules/
   only:
     - master
 
 Test:
   stage: test
   image: node:13.7.0 # can be upgraded, depending on your node version used
-  before_script:
-    - npm install
   script:
     - npm ci --progress=false
     - npm run test:unit -- --coverage
   artifacts:
     paths:
       - ./tests/__coverage__/lcov.info
+    expire_in: 1 hour
+  cache:
+    key: $CI_COMMIT_REF_NAME
+    policy: pull
+    paths:
+      - node_modules/
 
 Eslint:
   stage: test
   image: node:13.7.0 # can be upgraded, depending on your node version used
-  before_script:
-    - npm install
   script:
     - npm run lint
+  cache:
+    key: $CI_COMMIT_REF_NAME
+    policy: pull
+    paths:
+      - node_modules/
   
 SonarScanner:
   image: addianto/sonar-scanner-cli:latest
@@ -84,6 +110,11 @@ Deployment:
   environment:
     name: staging
     url: $HEROKU_APP_HOST
+  cache:
+    key: staging
+    policy: pull
+    paths:
+      - node_modules/
   only:
     - staging
 
@@ -101,6 +132,11 @@ DeployProduction:
   environment:
     name: production
     url: $HEROKU_APP_HOST_PROD
+  cache:
+    key: production
+    policy: pull
+    paths:
+      - node_modules/
   only:
     - master
   when: manual
