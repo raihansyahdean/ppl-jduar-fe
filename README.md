@@ -6,15 +6,18 @@ Smart CRM (Customer Relationship Management) is a progressive web app (PWA) whic
 
 ## Projects URL
 To Use Environment variable use : process.env.VUE_APP_VARNAMEHERE
+
 Staging : https://ppl-smartcrm.herokuapp.com/
+
 Production : https://smart-crm.herokuapp.com/
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 * Install npm (Node Package Manager) [here](https://www.npmjs.com/get-npm) 
+
 note : we're using 6.13.4 for node version, to check node version type :
 ```
 npm -v
@@ -27,6 +30,7 @@ npm -v
 A step by step series to get a development env running in your local PC
 
 * Init git using :
+
 (you must install git first in prerequisites)
 ```
 git init
@@ -48,6 +52,7 @@ cd jduar-nvdia-smart-crm-frontend
 ```
 
 * Install all library depedencies using :
+
 (you must install npm first in prerequisites)
 ```
 npm install
