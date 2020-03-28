@@ -24,6 +24,22 @@ a:hover {
     font-size: 16px;
 }
 
+.font-18-px {
+    font-size: 18px;
+}
+
+.font-20-px {
+    font-size: 20px;
+}
+
+.font-22-px {
+    font-size: 22px;
+}
+
+.no-margin{
+    margin: 0vw;
+}
+
 /* Alignment */
 .vertical-center {
     min-height: 100%;
@@ -41,4 +57,69 @@ a:hover {
     width: 100%;
     position: absolute;
     text-align: right;
+}
+
+/* Menu Button Success Regis */
+#menu-button {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+#menu-button:focus {
+    box-shadow: none;   
+}
+
+#menu-button:active {
+    background-color: #f2f2f2;
+}
+
+#regis-status-icon {
+    width: 55vw;
+    height: 55vw;
+}
+
+#regis-div{
+    margin: 0.5rem 3rem 5rem 3rem;
+}
+
+
+/* Menu Button Failed Regis */
+#retry-button {
+    padding: 0.5rem;
+    background-color: #2D9CDB;
+    color: #ffffff !important;
+    border-radius: 12px;
+    font-size: 14px;
+    width: 300px;
+    margin: 1vw;
+}
+
+#retry-button:focus {
+    box-shadow: none;   
+}
+
+#retry-button:active {
+    background-color: #f2f2f2;
+}
+
+#regis-status-icon {
+    width: 200px;
+    height: 200px;
+}
+
+#regis-div{
+    margin: 0.5rem 3rem 5rem 3rem;
+}
+
+#fail-menu-button{
+    padding: 0.5rem;
+    background-color: #56CCF2;
+    color: #ffffff !important;
+    border-radius: 12px;
+    font-size: 14px;
+    width: 300px;
+    margin: 1vw;
 }
