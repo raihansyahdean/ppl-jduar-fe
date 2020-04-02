@@ -16,6 +16,10 @@ a:hover {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.font-13-px {
+    font-size: 13px;
+}
+
 .font-14-px {
     font-size: 14px;
 }

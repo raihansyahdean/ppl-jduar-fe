@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import InstructionPage from '@/components/InstructionPage.vue'
+import RegistrationInstructionPage from '@/components/RegistrationInstructionPage.vue'
 import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import {render, fireEvent} from '@testing-library/vue'
@@ -8,15 +8,15 @@ import 'jest-canvas-mock';
 
 Vue.use(BootstrapVue);
 
-describe('InstructionPage.vue', () => {
-	const wrapper = mount(InstructionPage);
+describe('RegistrationInstructionPage.vue', () => {
+	const wrapper = mount(RegistrationInstructionPage);
 	
 	it('contains camera video tag', () => {
 		expect(wrapper.html()).toContain('<video></video>');
 	});
 	
 	it('can change instruction if Ambil Foto button is clicked', async () => {
-		const {getByText} = render(InstructionPage);
+		const {getByText} = render(RegistrationInstructionPage);
 
 		getByText('Hadapkan kepala Anda ke arah depan.');
 	
@@ -36,8 +36,8 @@ describe('InstructionPage.vue', () => {
 	});
 
 	it('redirect the page to ready page if instructions if finished', async () => {
-		const {getByText} = render(InstructionPage, {routes}, (vue, store, router) => {
-			router.push('/ready');
+		const {getByText} = render(RegistrationInstructionPage, {routes}, (vue, store, router) => {
+			router.push('/registration/ready');
 		})
 
 		const button = getByText('Ambil Foto');
@@ -47,6 +47,6 @@ describe('InstructionPage.vue', () => {
 		await fireEvent.click(button);
 		await fireEvent.click(button);
 
-		expect(window.location.href).toContain("/ready");
+		expect(window.location.href).toContain("/registration/ready");
 	});
 })

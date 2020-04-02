@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="px-5" id="cancel">
-                <a href="/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
+                <a href="/registration/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@ import Camera from "./Camera.vue"
 import axios from "axios"
 
 export default {
-    name: 'InstructionPage',
+    name: 'RegistrationInstructionPage',
     components: {
         Camera
     },
@@ -55,7 +55,7 @@ export default {
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
                 this.sendPayload();
-                // window.location = '/ready';
+                //window.location = '/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
