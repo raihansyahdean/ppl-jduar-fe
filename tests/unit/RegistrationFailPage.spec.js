@@ -22,9 +22,9 @@ describe('RegistrationFailPage.vue', () => {
 	it('redirect the page to ready page if Registrasi Ulang button is clicked', async () => {
 		const button = wrapper.find('#retry-button');
 		button.trigger('click');
-		router.push("/ready");
+		router.push("/registration/ready");
 		await wrapper.vm.$nextTick();
-		expect(router.currentRoute.fullPath).toBe('/ready');
+		expect(router.currentRoute.fullPath).toBe('/registration/ready');
     });
     
     it('redirect the page to home page if Menu Utama button is clicked', async () => {

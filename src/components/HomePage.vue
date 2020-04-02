@@ -14,7 +14,7 @@
 	</div>
 
 	<div style="margin-top:3vw">
-	<router-link to="/ready">
+	<router-link to="/registration/ready">
 		<img id='register-image' alt="register-button"
 		style="margin:1vw;"
 		@mouseover="mouseOverRegister"

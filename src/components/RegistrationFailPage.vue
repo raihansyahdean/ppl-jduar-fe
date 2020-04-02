@@ -9,7 +9,7 @@
                     <div><p class="font-22-px">Registrasi Gagal</p></div>
                 </div>
                 <div>
-                    <b-button href="/ready" class="border-0 font-16-px" id="retry-button">Registrasi Ulang</b-button>
+                    <b-button href="/registration/ready" class="border-0 font-16-px" id="retry-button">Registrasi Ulang</b-button>
                     <b-button href="/" class="border-0 font-16-px" id="fail-menu-button">Menu Utama</b-button>
                 </div>
             </div>

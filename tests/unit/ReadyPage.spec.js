@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import ReadyPage from '@/components/ReadyPage.vue'
+import RegistrationReadyPage from '@/components/RegistrationReadyPage.vue'
 import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import VueRouter from "vue-router"
@@ -8,9 +8,9 @@ import routes from "@/routes.js"
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
-describe('ReadyPage.vue', () => {
+describe('RegistrationReadyPage.vue', () => {
 	const router = new VueRouter({ routes });
-	const wrapper = mount(ReadyPage, { 
+	const wrapper = mount(RegistrationReadyPage, { 
 		Vue,
 		router
 	});
@@ -22,8 +22,8 @@ describe('ReadyPage.vue', () => {
 	it('redirect the page to instruction page if Mulai Button is clicked', async () => {
 		const button = wrapper.find('#start-button');
 		button.trigger('click');
-		router.push("/start");
+		router.push("/registration/start");
 		await wrapper.vm.$nextTick();
-		expect(router.currentRoute.fullPath).toBe('/start');
+		expect(router.currentRoute.fullPath).toBe('/registration/start');
 	});
 })
