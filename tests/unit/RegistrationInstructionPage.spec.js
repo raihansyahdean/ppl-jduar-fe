@@ -4,14 +4,13 @@ import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import {render, fireEvent} from '@testing-library/vue'
 import routes from "@/routes.js"
-import 'jest-canvas-mock';
+import 'jest-canvas-mock'
 
 Vue.use(BootstrapVue);
 
 describe('RegistrationInstructionPage.vue', () => {
-	const wrapper = mount(RegistrationInstructionPage);
-	
 	it('contains camera video tag', () => {
+		const wrapper = mount(RegistrationInstructionPage);
 		expect(wrapper.html()).toContain('<video></video>');
 	});
 	
