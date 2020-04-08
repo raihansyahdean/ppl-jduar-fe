@@ -1,7 +1,7 @@
 <template>
     <div class="vertical-center text-center justify-content-center">
         <div class="d-inline-block">
-            <div>
+            <div id="instruction-content">
                 <div id="camera">
                     <div class="mx-auto d-block" id="circle">
                         <camera ref="camera"/>
@@ -15,6 +15,7 @@
                     <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
                 </div>
             </div>
+            <div id="loading-circle" class="d-none"><b-spinner variant="primary" label="Spinning"></b-spinner></div>
             <div class="px-5" id="cancel">
                 <a href="/registration/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
@@ -54,8 +55,10 @@ export default {
         },
         changeInstruction: function(){
             if (this.instructionIdx == 4) {
+                document.getElementById('instruction-content').setAttribute('style', 'display:none');
+                document.getElementById('cancel').setAttribute('style', 'display:none');
+                document.getElementById('loading-circle').setAttribute('style', 'display:block !important');
                 this.sendPayload();
-                window.location = 'registration/ready';
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
@@ -69,7 +72,12 @@ export default {
                 method: 'post',
                 url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
             })
-            .then(response => { console.log(response) })
+            .then(response => { 
+                console.log(response.data.available_passcodes);
+                this.$store.dispatch('updateIds', response.data.available_passcodes).then(() => {
+                    this.$router.push({ path: '/registration/passcode' });
+                })
+            })
             .catch(error => { console.log(error) });
         }
     }

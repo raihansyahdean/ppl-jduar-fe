@@ -1,11 +1,10 @@
 import { mount } from '@vue/test-utils'
-import RegistrationInstructionPage from '@/components/RegistrationInstructionPage.vue'
+import RegistrationPasscodePage from '@/components/RegistrationPasscodePage.vue'
 import Vue from 'vue'
 import { BootstrapVue } from 'bootstrap-vue'
 import VueRouter from "vue-router"
 import routes from "@/routes.js"
 import Vuex from 'vuex'
-import 'jest-canvas-mock'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -22,7 +21,7 @@ afterEach(() => {
 
 const store = new Vuex.Store({
     state: {
-		passcodeIDs: []
+		passcodeIDs: ['Apple', 'Watermelon', 'Lemon']
     },
     mutations: {
 		updateIds (state, ids) {
@@ -30,51 +29,52 @@ const store = new Vuex.Store({
 		}
     },
     actions: {
-		async updateIds ({ commit }, ids) {
+		updateIds ({ commit }, ids) {
 			commit('updateIds', ids)
 		}
     }
 })
 
-
-describe('RegistrationInstructionPage.vue', () => {
+describe('RegistrationPasscodePage.vue', () => {
 	const router = new VueRouter({ routes });
-	router.push("/registration/passcode");
+	router.push("/registration/success");
 
-	const wrapper = mount(RegistrationInstructionPage, {
+	const wrapper = mount(RegistrationPasscodePage, {
 		Vue,
 		router,
 		store,
 		data: function() {
 			return {
-				captured: {
-					images: ['images'],
-				},
+				data: function() {
+				return {
+					selectedPasscode : "Apple"
+				}
+			},
 			}
 		},
 	});
 
-	it('correctly sends the photos to backend', () => {
+	it('correctly sends the passcode to backend and redirect to success page', () => {
 		const method = 'post';
-		const url = process.env.VUE_APP_URL_BE + "/crossroads/regist/";
-		const payload = JSON.stringify(wrapper.vm.captured);
-		wrapper.vm.sendPayload();
+		const url = process.env.VUE_APP_URL_BE + "/crossroads/registpasscode/";
+		const payload = JSON.parse(JSON.stringify({"chosen_passcode" : wrapper.vm.selectedPasscode	}));
+		wrapper.vm.choosePasscode();
 		expect(axios).toBeCalledWith({ data:payload, method: method, url: url });
-		expect(router.currentRoute.fullPath).toBe("/registration/passcode");
+		expect(router.currentRoute.fullPath).toBe("/registration/success");
 	});
 
-	it('gets the rejected response when sending photos', () => {
+	it('gets the rejected response when sending passcode', () => {
 		const err = { status: 404 };
 		axios.post = axios.mockRejectedValue(err);
-		wrapper.vm.sendPayload().catch(error => {
+		wrapper.vm.choosePasscode().catch(error => {
 			expect(error).toEqual(err);
 		});
 	});
 
-	it('gets the accepted response when sending photos', () => {
-		const resp = { status: 200, data: {available_passcodes: ['Apple'] }};
+	it('gets the accepted response when sending passcode', () => {
+		const resp = { status: 200 };
 		axios.post = axios.mockResolvedValue(resp);
-		wrapper.vm.sendPayload().then(response => {
+		wrapper.vm.choosePasscode().then(response => {
 			expect(response).toEqual(resp);
 		});
 	});

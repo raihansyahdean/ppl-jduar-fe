@@ -59,7 +59,7 @@ a:hover {
     left: 0;
     height: 50px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     text-align: right;
 }
 
@@ -88,7 +88,6 @@ a:hover {
 #regis-div{
     margin: 0.5rem 3rem 5rem 3rem;
 }
-
 
 /* Menu Button Failed Regis */
 #retry-button {

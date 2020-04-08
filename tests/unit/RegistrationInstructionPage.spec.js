@@ -36,7 +36,7 @@ describe('RegistrationInstructionPage.vue', () => {
 
 	it('redirect the page to ready page if instructions if finished', async () => {
 		const {getByText} = render(RegistrationInstructionPage, {routes}, (vue, store, router) => {
-			router.push('/registration/ready');
+			router.push('/registration/passcode');
 		})
 
 		const button = getByText('Ambil Foto');
@@ -46,6 +46,6 @@ describe('RegistrationInstructionPage.vue', () => {
 		await fireEvent.click(button);
 		await fireEvent.click(button);
 
-		expect(window.location.href).toContain("/registration/ready");
+		expect(window.location.href).toContain("/registration/passcode");
 	});
 })
