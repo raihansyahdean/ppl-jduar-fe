@@ -58,27 +58,36 @@ export default {
                 document.getElementById('instruction-content').setAttribute('style', 'display:none');
                 document.getElementById('cancel').setAttribute('style', 'display:none');
                 document.getElementById('loading-circle').setAttribute('style', 'display:block !important');
-                this.sendPayload();
+                this.sendPayload(0);
             } else {
                 document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
                 this.instructionIcon = require("../assets/img/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
                 this.instructionIdx++;
             }
         },
-        sendPayload: async function(){
-            const payload = JSON.stringify(this.captured);
-            axios({
-                data: payload,
-                method: 'post',
-                url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
-            })
-            .then(response => { 
-                console.log(response.data.available_passcodes);
-                this.$store.dispatch('updateIds', response.data.available_passcodes).then(() => {
-                    this.$router.push({ path: '/registration/passcode' });
+        sendPayload: async function(counter){
+            if(counter < 3){
+                counter += 1;
+                const payload = JSON.stringify(this.captured);
+                axios({
+                    data: payload,
+                    method: 'post',
+                    url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
                 })
-            })
-            .catch(error => { console.log(error) });
+                .then(response => { 
+                    console.log(response.data.available_passcodes);
+                    this.$store.dispatch('updateIds', response.data.available_passcodes).then(() => {
+                        this.$router.push({ path: '/registration/passcode' });
+                    })
+                })
+                .catch(error => { 
+                    console.log(error);
+                    this.sendPayload(counter); 
+                });
+            }
+            else{
+                this.$router.push({ path: '/registration/fail' });
+            }
         }
     }
 };

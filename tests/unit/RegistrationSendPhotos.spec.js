@@ -58,7 +58,7 @@ describe('RegistrationInstructionPage.vue', () => {
 		const method = 'post';
 		const url = process.env.VUE_APP_URL_BE + "/crossroads/regist/";
 		const payload = JSON.stringify(wrapper.vm.captured);
-		wrapper.vm.sendPayload();
+		wrapper.vm.sendPayload(0);
 		expect(axios).toBeCalledWith({ data:payload, method: method, url: url });
 		expect(router.currentRoute.fullPath).toBe("/registration/passcode");
 	});
@@ -66,7 +66,7 @@ describe('RegistrationInstructionPage.vue', () => {
 	it('gets the rejected response when sending photos', () => {
 		const err = { status: 404 };
 		axios.post = axios.mockRejectedValue(err);
-		wrapper.vm.sendPayload().catch(error => {
+		wrapper.vm.sendPayload(0).catch(error => {
 			expect(error).toEqual(err);
 		});
 	});
@@ -74,7 +74,7 @@ describe('RegistrationInstructionPage.vue', () => {
 	it('gets the accepted response when sending photos', () => {
 		const resp = { status: 200, data: {available_passcodes: ['Apple'] }};
 		axios.post = axios.mockResolvedValue(resp);
-		wrapper.vm.sendPayload().then(response => {
+		wrapper.vm.sendPayload(0).then(response => {
 			expect(response).toEqual(resp);
 		});
 	});
