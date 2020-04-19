@@ -69,7 +69,7 @@ a:hover {
     background-color: #ffffff;
     color: #000000;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #menu-button:focus {
@@ -95,7 +95,7 @@ a:hover {
     background-color: #2D9CDB;
     color: #ffffff !important;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 16px;
     width: 300px;
     margin: 1vw;
 }
@@ -122,7 +122,7 @@ a:hover {
     background-color: #56CCF2;
     color: #ffffff !important;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 16px;
     width: 300px;
     margin: 1vw;
 }
