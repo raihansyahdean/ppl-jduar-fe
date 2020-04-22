@@ -24,7 +24,7 @@
 	</router-link>
 
 	<div>
-		<router-link to="/">
+		<router-link to="/identification/ready">
 			<img id='identify-image' alt="identify-button"
 			@mouseover="mouseOverIdentify"
 			@mouseleave="mouseLeaveIdentify" 

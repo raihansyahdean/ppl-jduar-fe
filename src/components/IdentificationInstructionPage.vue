@@ -12,12 +12,12 @@
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
                 </div>
                 <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangeInstruction">Ambil Foto</b-button>
+                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangePage">Ambil Foto</b-button>
                 </div>
             </div>
             <div id="loading-circle" class="d-none"><b-spinner variant="primary" label="Spinning"></b-spinner></div>
             <div class="px-5" id="cancel">
-                <a href="/registration/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
+                <a href="/identification/ready" class="font-16-px text-decoration-none" id="cancel-link">Batal</a>
             </div>
         </div>
     </div>
@@ -28,56 +28,46 @@ import Camera from "./Camera.vue"
 import axios from "axios"
 
 export default {
-    name: 'RegistrationInstructionPage',
+    name: 'IdentificationInstructionPage',
     components: {
         Camera
     },
     data: function () {
         return {
-            instructionsList: ['Hadapkan kepala Anda ke arah kanan.', 
-            'Hadapkan kepala Anda ke arah kiri.', 
-            'Hadapkan kepala Anda ke arah atas.', 
-            'Hadapkan kepala Anda ke arah bawah.'],
-            instructionIconsList: ['right', 'left', 'up', 'down'],
             instructionIcon: require("../assets/img/InstructionPage/front-face-instruction.png"),
-            instructionIdx: 0,
             captured: {
-                images: [],
+                image: "",
             },
         }
     },
     methods: {
-        savePhotoAndChangeInstruction: function(){
+        savePhotoAndChangePage: function() {
             const capturedPhoto = this.$refs.camera.capturePhoto();
-            this.captured.images.push(capturedPhoto);
+            this.captured.image = capturedPhoto;
             console.log(this.captured);
-            this.changeInstruction();
+            this.changePage();
         },
-        changeInstruction: function(){
-            if (this.instructionIdx == 4) {
-                document.getElementById('instruction-content').setAttribute('style', 'display:none');
-                document.getElementById('cancel').setAttribute('style', 'display:none');
-                document.getElementById('loading-circle').setAttribute('style', 'display:block !important');
-                this.sendPayload(0);
-            } else {
-                document.getElementById("instruction-sentence").innerHTML = this.instructionsList[this.instructionIdx];  
-                this.instructionIcon = require("../assets/img/InstructionPage/" + this.instructionIconsList[this.instructionIdx] + "-face-instruction.png");
-                this.instructionIdx++;
-            }
+        changePage: function() {
+            // Show loading icon
+            document.getElementById('instruction-content').setAttribute('style', 'display:none');
+            document.getElementById('cancel').setAttribute('style', 'display:none');
+            document.getElementById('loading-circle').setAttribute('style', 'display:block !important');
+            // Send photos to backend
+            this.sendPayload(0);
         },
-        sendPayload: async function(counter){
+        sendPayload: async function(counter) {
             if(counter < 3){
                 counter += 1;
                 const payload = JSON.stringify(this.captured);
                 axios({
                     data: payload,
                     method: 'post',
-                    url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
+                    url: process.env.VUE_APP_URL_BE + "/crossroads/identify/",
                 })
                 .then(response => { 
-                    console.log(response.data.available_passcodes);
-                    this.$store.dispatch('updateIds', response.data.available_passcodes).then(() => {
-                        this.$router.push({ path: '/registration/passcode' });
+                    console.log(response.data.passcode_set);
+                    this.$store.dispatch('updateIds', response.data.passcode_set).then(() => {
+                        this.$router.push({ path: '/identification/passcode' });
                     })
                 })
                 .catch(error => { 
@@ -86,13 +76,12 @@ export default {
                 });
             }
             else{
-                this.$router.push({ path: '/registration/fail' });
+                this.$router.push({ path: '/identification/fail' });
             }
         }
     }
 };
 </script>
-
 
 <style>
 /* Camera Part */
@@ -133,4 +122,3 @@ export default {
     background-color: #3180ad;
 }
 </style>
-
