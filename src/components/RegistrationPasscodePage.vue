@@ -52,6 +52,7 @@ export default {
             } else {
                 passcodesIDs = this.rearrangePasscode(passcodesIDs);
             }
+            this.$store.commit('updateIds', [])
             return passcodesIDs;
         },
     },

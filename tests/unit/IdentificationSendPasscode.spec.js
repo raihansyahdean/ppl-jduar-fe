@@ -47,7 +47,7 @@ describe('IdentificationPasscodePage.vue', () => {
 			return {
 				data: function() {
 				return {
-					selectedPasscode : "Apple"
+					chosenPasscode : "Apple"
 				}
 			},
 			}
@@ -57,9 +57,9 @@ describe('IdentificationPasscodePage.vue', () => {
 	it('correctly sends the passcode to backend and redirect to success page', () => {
 		const method = 'post';
 		const url = process.env.VUE_APP_URL_BE + "/crossroads/identifypasscode/";
-		const payload = JSON.parse(JSON.stringify({"passcode" : wrapper.vm.selectedPasscode	}));
+		const payloadData = JSON.parse(JSON.stringify({"passcode" : wrapper.vm.chosenPasscode	}));
 		wrapper.vm.choosePasscode();
-		expect(axios).toBeCalledWith({ data:payload, method: method, url: url });
+		expect(axios).toBeCalledWith({ data:payloadData, method: method, url: url });
 		expect(router.currentRoute.fullPath).toBe("/identification/success");
 	});
 
