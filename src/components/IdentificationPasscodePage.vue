@@ -41,43 +41,42 @@ export default {
     name: 'IdentificationPasscodePage',
     data: function () {
         return {
-            selectedPasscode: null,
+            chosenPasscode: null,
         }
     },
     computed: {
         generatePasscode: function() {
-            var passcodesIDs = this.$store.state.passcodeIDs;
-            if (this.$store.state.passcodeIDs == undefined || passcodesIDs.length == 0) {
+            var storedPasscodesIDs = this.$store.state.passcodeIDs;
+            if (this.$store.state.passcodeIDs == undefined || storedPasscodesIDs.length == 0) {
                 window.location = "/identification/fail";
             } else {
-                passcodesIDs = this.rearrangePasscode(passcodesIDs);
+                storedPasscodesIDs = this.rearrangePasscode(storedPasscodesIDs);
             }
             this.$store.commit('updateIds', [])
-            return passcodesIDs;
+            return storedPasscodesIDs;
         },
     },
     methods: {
         rearrangePasscode: function(passcodesIDs){
-            var totalPasscode = passcodesIDs.length;
-            var newPasscodeIDs = [];
-            for (var i = 0; i < totalPasscode; i+=2) {
-                if ((i == totalPasscode - 1) && (totalPasscode % 2 == 1)) {
-                    newPasscodeIDs.push({first: passcodesIDs[i], second: "empty"});
+            var rearrangedPasscodeIDs = [];
+            for (var i = 0; i < passcodesIDs.length; i+=2) {
+                if ((i == passcodesIDs.length - 1) && (passcodesIDs.length % 2 == 1)) {
+                    rearrangedPasscodeIDs.push({first: passcodesIDs[i], second: "empty"});
                 } else {
-                    newPasscodeIDs.push({first: passcodesIDs[i], second: passcodesIDs[i+1]});
+                    rearrangedPasscodeIDs.push({first: passcodesIDs[i], second: passcodesIDs[i+1]});
                 }
             }
-            return newPasscodeIDs;
+            return rearrangedPasscodeIDs;
         },
         clickedPasscode: function(passcodeID){
-            this.selectedPasscode = passcodeID;
+            this.chosenPasscode = passcodeID;
         },
         choosePasscode: async function(){
-            const payload = JSON.parse(JSON.stringify({"passcode" : this.selectedPasscode}));
+            const payloadData = JSON.parse(JSON.stringify({"passcode" : this.chosenPasscode}));
             axios({
                 method: 'post',
                 url: process.env.VUE_APP_URL_BE + "/crossroads/identifypasscode/",
-                data: payload
+                data: payloadData
             })
             .then(response => {
                 console.log(response.data.message);
