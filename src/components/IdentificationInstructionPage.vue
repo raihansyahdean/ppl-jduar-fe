@@ -17,7 +17,7 @@
                 </div>
                 <div class="mx-auto d-block" id="circle-progress">
                     <radial-progress-bar class="mx-auto d-block" :diameter="diameter"
-                       :completed-steps="completedSteps"
+                       :completed-steps="stepsCompleted"
                        :total-steps="totalSteps"
                        :animate-speed="animateSpeed"
                        :stroke-width=10
@@ -77,34 +77,34 @@ export default {
             innerStrokeColor: '#F2F2F2',
             stopColor: '#3180AD',
             animateSpeed: 10,
-            completedSteps: 0,
+            stepsCompleted: 0,
             totalSteps: 30,
             captureSuccessAudio: new Audio(require("../assets/audio/ding.mp3")),
         }
     },
     methods: {
         detectFace: async function() {
-            const video = document.getElementById('video');
-            const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions());
-            if (detection != undefined) {
+            const camera = document.getElementById('video');
+            const detect = await faceapi.detectSingleFace(camera, new faceapi.TinyFaceDetectorOptions());
+            if (detect != undefined) {
                 this.faceDetected = true;
                 console.log("Face Detected");
-                console.log(detection);
+                console.log(detect);
             } else {
                 console.log("Face Not Detected");
             }
         },
         setCircleTime: function(seconds) {
             if (this.circleTimer != null) {
-                this.completedSteps = 0;
+                this.stepsCompleted = 0;
                 clearInterval(this.circleTimer);
             }
             this.startCircleTimer(seconds);
         },
         startCircleTimer: function(seconds) {
             this.circleTimer = setInterval(() => {
-                this.completedSteps++;
-                if (this.completedSteps >= this.totalSteps) {
+                this.stepsCompleted++;
+                if (this.stepsCompleted >= this.totalSteps) {
                     clearInterval(this.circleTimer);
                     this.showCapturedText();
                     this.captureSuccessAudio.play();
