@@ -50,6 +50,7 @@ a:hover {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    padding: 20px 0 60px 0;
   }
 
 /* Cancel Button */
@@ -61,6 +62,7 @@ a:hover {
     width: 100%;
     position: fixed;
     text-align: right;
+    background-color: #ffffff;
 }
 
 /* Menu Button Success Regis */
