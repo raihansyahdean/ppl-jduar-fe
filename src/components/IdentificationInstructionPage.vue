@@ -2,17 +2,41 @@
     <div class="vertical-center text-center justify-content-center">
         <div class="d-inline-block">
             <div id="instruction-content">
-                <div id="camera">
-                    <div class="mx-auto d-block" id="circle">
-                        <camera ref="camera"/>
+                <div class="justify-content-center row" id="information-sentence-div">
+                    <div class="col-xs-8">
+                        <p class="font-14-px" id="information-sentence">Wajah Anda sedang dideteksi</p>
                     </div>
+                    <div class="py-2 mx-2 col-xs-4" id="dot-spinner">
+                        <hollow-dots-spinner
+                            :animation-duration="1000"
+                            :dot-size="6"
+                            :dots-num="3"
+                            :color="'#2D9CDB'"
+                        />
+                    </div>
+                </div>
+                <div class="mx-auto d-block" id="circle-progress">
+                    <radial-progress-bar class="mx-auto d-block" :diameter="diameter"
+                       :completed-steps="completedSteps"
+                       :total-steps="totalSteps"
+                       :animate-speed="animateSpeed"
+                       :stroke-width=10
+                       :start-color="startColor"
+                       :inner-stroke-color="innerStrokeColor"
+                       :stop-color="stopColor">
+                        <div id="camera">
+                            <div class="mx-auto d-block" id="circle">
+                                <camera class="d-block" ref="camera"/>
+                            </div>
+                        </div>
+                    </radial-progress-bar>
                 </div>
                 <div id="instruction">
                     <div><img id="instruction-icon" alt="instruction-icon" :src="instructionIcon"></div>
                     <p class="font-14-px" id="instruction-sentence">Hadapkan kepala Anda ke arah depan.</p>
-                </div>
-                <div>
-                    <b-button class="border-0 font-16-px font-weight-bold" id="shoot-button" @click="savePhotoAndChangePage">Ambil Foto</b-button>
+                    <div class="d-none" id="captured-sentence-div">
+                        <p class="font-14-px" id="captured-sentence">Foto berhasil diambil!</p>
+                    </div>
                 </div>
             </div>
             <div id="loading-circle" class="d-none"><b-spinner variant="primary" label="Spinning"></b-spinner></div>
@@ -24,13 +48,21 @@
 </template>
 
 <script>
+/* These lines are ignored due to face-api functionality must be tested directly by user */
+/* istanbul ignore next */
 import Camera from "./Camera.vue"
+import RadialProgressBar from 'vue-radial-progress'
+import {HollowDotsSpinner} from 'epic-spinners'
 import axios from "axios"
+import * as faceapi from 'face-api.js';
+import '@tensorflow/tfjs';
 
 export default {
     name: 'IdentificationInstructionPage',
     components: {
-        Camera
+        Camera,
+        RadialProgressBar,
+        HollowDotsSpinner,
     },
     data: function () {
         return {
@@ -38,14 +70,74 @@ export default {
             captured: {
                 image: "",
             },
+            faceDetected: false,
+            circleTimer: null,
+            diameter: 275,
+            startColor: '#2D9CDB',
+            innerStrokeColor: '#F2F2F2',
+            stopColor: '#3180AD',
+            animateSpeed: 10,
+            completedSteps: 0,
+            totalSteps: 30,
+            captureSuccessAudio: new Audio(require("../assets/audio/ding.mp3")),
         }
     },
     methods: {
-        savePhotoAndChangePage: function() {
-            const capturedPhoto = this.$refs.camera.capturePhoto();
-            this.captured.image = capturedPhoto;
-            console.log(this.captured);
-            this.changePage();
+        detectFace: async function() {
+            const video = document.getElementById('video');
+            const detection = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions());
+            if (detection != undefined) {
+                this.faceDetected = true;
+                console.log("Face Detected");
+                console.log(detection);
+            } else {
+                console.log("Face Not Detected");
+            }
+        },
+        setCircleTime: function(seconds) {
+            if (this.circleTimer != null) {
+                this.completedSteps = 0;
+                clearInterval(this.circleTimer);
+            }
+            this.startCircleTimer(seconds);
+        },
+        startCircleTimer: function(seconds) {
+            this.circleTimer = setInterval(() => {
+                this.completedSteps++;
+                if (this.completedSteps >= this.totalSteps) {
+                    clearInterval(this.circleTimer);
+                    this.showCapturedText();
+                    this.captureSuccessAudio.play();
+                    setTimeout(this.changePage, 2000);
+                    return;
+                }
+            }, seconds * 1000 / this.totalSteps);
+        },
+        showCapturedText: function() {
+            document.getElementById('dot-spinner').setAttribute('style', 'display:none');
+            document.getElementById('information-sentence').innerHTML = ""
+            this.loadingTextAnimation(document.getElementById('information-sentence'), "Wajah Anda berhasil dideteksi!", 0, 10, false)
+        },
+        loadingTextAnimation: async function(target, message, index, interval, repeat) {
+            if (index < message.length) {
+                target.append(message[index++]);
+                setTimeout(() => {
+                    this.loadingTextAnimation(target, message, index, interval); 
+                }, interval);
+            } else if (repeat && index == message.length) {
+                console.log("Hello")
+                index = 0 
+            }
+        },
+        savePhotoAndChangePage: async function(){
+            await this.detectFace();
+            if (this.faceDetected) {
+                clearInterval(this.completeDetectFace);
+                const capturedPhoto = this.$refs.camera.capturePhoto();
+                this.captured.images = capturedPhoto;
+                console.log(this.captured);
+                this.setCircleTime(1);
+            }
         },
         changePage: function() {
             // Show loading icon
@@ -79,7 +171,13 @@ export default {
                 this.$router.push({ path: '/identification/fail' });
             }
         }
-    }
+    },
+    mounted() {
+        this.completeDetectFace = setInterval(() => {
+            this.savePhotoAndChangePage() 
+        }, 500);
+
+    },
 };
 </script>
 
@@ -104,21 +202,5 @@ export default {
 
 #instruction-sentence {
     margin: 0 0 2rem 0;
-}
-
-/* Shoot Button */
-#shoot-button {
-    padding: 0.5rem 7rem;
-    background-color: #2D9CDB;
-    color: #ffffff;
-    border-radius: 12px;
-}
-
-#shoot-button:focus {
-    box-shadow: none;   
-}
-
-#shoot-button:active {
-    background-color: #3180ad;
 }
 </style>

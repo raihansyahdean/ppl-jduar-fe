@@ -9,8 +9,13 @@ module.exports = {
 
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '.*\\.(vue)$': 'vue-jest',
+    ".+\\.(mp3)$": "jest-transform-stub",
   },
+
+  transformIgnorePatterns: [
+    "node_modules/(?!vue-radial-progress|epic-spinners)",
+  ],
 
   collectCoverage: true,
 

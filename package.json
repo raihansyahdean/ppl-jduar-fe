@@ -11,16 +11,22 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^1.7.4",
+    "@tensorflow/tfjs-core": "^1.7.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.5.0",
     "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.4",
+    "epic-spinners": "^1.1.0",
     "express": "^4.17.1",
     "express-sslify": "^1.2.0",
+    "face-api.js": "^0.22.2",
     "i": "^0.3.6",
+    "jquery": "^3.5.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
+    "vue-radial-progress": "^0.3.1",
     "vue-router": "^3.1.5",
     "vuex": "^3.2.0"
   },

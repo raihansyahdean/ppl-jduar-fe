@@ -1,8 +1,13 @@
 <template>
-    <video ref="video"> </video>
+    <video ref="video" id="video"> </video>
 </template>
 
 <script>
+/* These lines are ignored due to its functionality is tested directly by user*/
+/* istanbul ignore next */
+import * as faceapi from 'face-api.js';
+import '@tensorflow/tfjs';
+
 export default {
     name: 'Camera',
     data () {
@@ -11,9 +16,12 @@ export default {
         }
     },
     methods: {
+        loadFaceDetection: async function(){
+            Promise.all([
+                faceapi.nets.tinyFaceDetector.loadFromUri('/data/weights'),
+            ]).then(this.showCamera());
+        },
         showCamera: function() {
-            /* These lines are ignored due to its functionality is tested directly by user*/
-            /* istanbul ignore next */
             if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(mediaStream => {
@@ -39,7 +47,7 @@ export default {
         }
     },
     mounted() {
-        this.showCamera();
+        this.loadFaceDetection();
     },
 }
 </script>
