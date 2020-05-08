@@ -134,7 +134,7 @@ export default {
             if (this.faceDetected) {
                 clearInterval(this.completeDetectFace);
                 const capturedPhoto = this.$refs.camera.capturePhoto();
-                this.captured.images = capturedPhoto;
+                this.captured.image = capturedPhoto;
                 console.log(this.captured);
                 this.setCircleTime(1);
             }
