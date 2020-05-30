@@ -164,6 +164,10 @@ export default {
                 })
                 .catch(error => { 
                     console.log(error);
+                    if(error.response.data.message == "Bad Identify Image Sent: To Blurry"){
+                        this.$router.push({ path: '/identification/fail' });
+                        return;
+                    }
                     this.sendPayload(counter); 
                 });
             }
