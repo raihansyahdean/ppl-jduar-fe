@@ -225,6 +225,10 @@ export default {
                 })
                 .catch(error => { 
                     console.log(error);
+                    if(error.response.data.message == "Bad Regist Image Sent: To Blurry"){
+                        this.$router.push({ path: '/registration/fail' });
+                        return;
+                    }
                     this.sendPayload(counter); 
                 });
             }
