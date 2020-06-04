@@ -2,7 +2,7 @@
 <div style="text-align: center;">
 	<div>
 		<b-navbar toggleable="lg" type="light" variant="light">
-		<b-navbar-brand href="#">Ssmart CRM</b-navbar-brand>
+		<b-navbar-brand href="#">Smart CRM</b-navbar-brand>
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" is-nav>
 			<b-navbar-nav>
