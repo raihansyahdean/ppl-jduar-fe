@@ -1,4 +1,6 @@
 import HomePage from "./components/HomePage.vue"
+import CashierRegistrationPage from "./components/CashierRegistrationPage.vue"
+import CashierLoginPage from "./components/CashierLoginPage.vue"
 import IdentificationReadyPage from './components/IdentificationReadyPage.vue'
 import IdentificationInstructionPage from "./components/IdentificationInstructionPage.vue"
 import IdentificationPasscodePage from "./components/IdentificationPasscodePage.vue"
@@ -13,17 +15,19 @@ import NotFoundPage from './components/NotFoundPage.vue'
 
 const routes = [
     {path: '*', component: NotFoundPage},
-    {path: '/', component: HomePage},
-    {path: '/identification/ready', component: IdentificationReadyPage},
-    {path: '/identification/start', component: IdentificationInstructionPage},
-    {path: '/identification/passcode', component: IdentificationPasscodePage},
-    {path: '/identification/fail', component: IdentificationFailPage},
-    {path: '/identification/success', component: IdentificationSuccessPage},
-    {path: '/registration/ready', component: RegistrationReadyPage},
-    {path: '/registration/start', component: RegistrationInstructionPage},
-    {path: '/registration/passcode', component: RegistrationPasscodePage},
-    {path: '/registration/fail', component: RegistrationFailPage},
-    {path: '/registration/success', component: RegistrationSuccessPage},
+    {path: '/', component: HomePage, meta: { requiresAuth: true }},
+    {path: '/cashier/registration', component: CashierRegistrationPage, meta: {hideForAuth: true}},
+    {path: '/cashier/login', component: CashierLoginPage, meta: {hideForAuth: true}},
+    {path: '/identification/ready', component: IdentificationReadyPage, meta: { requiresAuth: true }},
+    {path: '/identification/start', component: IdentificationInstructionPage, meta: { requiresAuth: true }},
+    {path: '/identification/passcode', component: IdentificationPasscodePage, meta: { requiresAuth: true }},
+    {path: '/identification/fail', component: IdentificationFailPage, meta: { requiresAuth: true }},
+    {path: '/identification/success', component: IdentificationSuccessPage, meta: { requiresAuth: true }},
+    {path: '/registration/ready', component: RegistrationReadyPage, meta: { requiresAuth: true }},
+    {path: '/registration/start', component: RegistrationInstructionPage, meta: { requiresAuth: true }},
+    {path: '/registration/passcode', component: RegistrationPasscodePage, meta: { requiresAuth: true }},
+    {path: '/registration/fail', component: RegistrationFailPage, meta: { requiresAuth: true }},
+    {path: '/registration/success', component: RegistrationSuccessPage, meta: { requiresAuth: true }},
 ]
 
 export default routes;

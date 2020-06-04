@@ -79,8 +79,7 @@ export default {
                 url: process.env.VUE_APP_URL_BE + "/crossroads/registpasscode/",
                 data: payload
             })
-            .then(response => { 
-                console.log(response);
+            .then(() => { 
                 this.$store.commit('updateIds', [])
                 this.$router.push({ path: '/registration/success' });
             })

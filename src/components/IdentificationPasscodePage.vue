@@ -79,7 +79,6 @@ export default {
                 data: payloadData
             })
             .then(response => {
-                console.log(response.data.message);
                 if (response.data.message.includes("Incorrect")) {
                     this.$router.push({ path: '/identification/fail' }); 
                 }

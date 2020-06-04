@@ -39,21 +39,5 @@ export default {
     width: 240px;
     height: 240px;
 }
-
-/* Start Button */
-#start-button {
-    padding: 0.5rem 7rem;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 12px;
-}
-
-#start-button:focus {
-    box-shadow: none;   
-}
-
-#start-button:active {
-    background-color: #f2f2f2;
-}
 </style>
 

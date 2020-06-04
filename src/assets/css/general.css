@@ -16,6 +16,10 @@ a:hover {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.font-12-px {
+    font-size: 12px;
+}
+
 .font-13-px {
     font-size: 13px;
 }
@@ -44,6 +48,44 @@ a:hover {
     margin: 0vw;
 }
 
+/* Form */
+#title-div {
+    margin-bottom: 40px;
+}
+
+form {
+    max-width: 256px!important;
+}
+
+.form-group {
+    margin: 20px 0!important;
+}
+
+input {
+    width: 256px!important;
+    border: 0!important;
+    border-bottom: 1px solid black !important;
+    border-radius: 0!important;
+}
+
+/* Submit Button */
+#submit-button {
+    padding: 0.5rem 7rem;
+    background-color: #29ABE2!important;
+    color: #ffffff!important;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
+#submit-button:hover {
+    box-shadow: none;
+    background-color: #42C1F6!important;
+}
+
+#submit-button:active {
+    background-color: #257EB0!important;
+}
+
 /* Alignment */
 .vertical-center {
     min-height: 100%;
@@ -63,6 +105,22 @@ a:hover {
     position: fixed;
     text-align: right;
     background-color: #ffffff;
+}
+
+/* Start Button */
+#start-button {
+    padding: 0.5rem 7rem;
+    background-color: #ffffff!important;
+    color: #000000!important;
+    border-radius: 12px;
+}
+
+#start-button:focus {
+    box-shadow: none;   
+}
+
+#start-button:active {
+    background-color: #f2f2f2!important;
 }
 
 /* Menu Button Success Regis */
