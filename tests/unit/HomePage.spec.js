@@ -12,7 +12,7 @@ describe('HomePage.vue', () => {
     });
     it("Test navbar and init image", async () => {
         await wrapper.vm.$nextTick()
-        expect(wrapper.html()).toContain('NavBar')
+        expect(wrapper.html()).toContain('Smart CRM')
         expect(wrapper.vm.$data.imageIdentify).toBe(require('@/assets/img/HomePage/Identify Default.png'))
         expect(wrapper.vm.$data.imageRegister).toBe(require('@/assets/img/HomePage/Register Default.png'))
     });
