@@ -89,7 +89,6 @@ export default {
             if (detect != undefined) {
                 this.faceDetected = true;
                 console.log("Face Detected");
-                console.log(detect);
             } else {
                 console.log("Face Not Detected");
             }
@@ -125,7 +124,6 @@ export default {
                     this.loadingTextAnimation(target, message, index, interval); 
                 }, interval);
             } else if (repeat && index == message.length) {
-                console.log("Hello")
                 index = 0 
             }
         },
@@ -135,7 +133,6 @@ export default {
                 clearInterval(this.completeDetectFace);
                 const capturedPhoto = this.$refs.camera.capturePhoto();
                 this.captured.image = capturedPhoto;
-                console.log(this.captured);
                 this.setCircleTime(1);
             }
         },
@@ -157,7 +154,6 @@ export default {
                     url: process.env.VUE_APP_URL_BE + "/crossroads/identify/",
                 })
                 .then(response => { 
-                    console.log(response.data.passcode_set);
                     this.$store.dispatch('updateIds', response.data.passcode_set).then(() => {
                         this.$router.push({ path: '/identification/passcode' });
                     })

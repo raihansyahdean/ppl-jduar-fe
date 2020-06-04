@@ -9,6 +9,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './registerServiceWorker'
 
+import axios from 'axios'
+
+const token = localStorage.getItem('token')
+if (token) {
+	axios.defaults.headers.common['Authorization'] = token
+}
+
 Vue.config.productionTip = false
 
 // Install Routing
@@ -19,12 +26,34 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 const router = new VueRouter({
-  mode: "history",
-  routes
+	mode: "history",
+	routes
 });
 
+router.beforeEach((to, from, next) => {
+	if(to.matched.some(record => record.meta.requiresAuth)) {
+		if (store.getters.isLoggedIn) {
+			next()
+			return
+		}
+		next('/cashier/login') 
+	} else {
+		next() 
+	}
+	
+	if (to.matched.some(record => record.meta.hideForAuth)) {
+		if (store.getters.isLoggedIn) {
+			next('/');
+		} else {
+			next();
+		}
+	} else {
+		next();
+	}
+})
+
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app');

@@ -105,7 +105,6 @@ export default {
             if (detection != undefined) {
                 this.faceDetected = true;
                 console.log("Face Detected");
-                console.log(detection);
             } else {
                 console.log("Face Not Detected");
             }
@@ -169,7 +168,6 @@ export default {
                     this.loadingTextAnimation(target, message, index, interval); 
                 }, interval);
             } else if (repeat && index == message.length) {
-                console.log("Hello")
                 index = 0 
             }
         },
@@ -180,7 +178,6 @@ export default {
                     clearInterval(this.completeDetectFace);
                     const capturedPhoto = this.$refs.camera.capturePhoto();
                     this.captured.images.push(capturedPhoto);
-                    console.log(this.captured);
                     this.setCircleTime(1);
                 }
                 this.faceDetected = false;
@@ -188,7 +185,6 @@ export default {
             else {
                 const capturedPhoto = this.$refs.camera.capturePhoto();
                 this.captured.images.push(capturedPhoto);
-                console.log(this.captured);
                 this.setCircleTime(1);
             }    
         },
@@ -218,7 +214,6 @@ export default {
                     url: process.env.VUE_APP_URL_BE + "/crossroads/regist/",
                 })
                 .then(response => { 
-                    console.log(response.data.available_passcodes);
                     this.$store.dispatch('updateIds', response.data.available_passcodes).then(() => {
                         this.$router.push({ path: '/registration/passcode' });
                     })
